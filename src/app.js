@@ -1,13 +1,14 @@
 const express = require('express');
-
+const config = require('../config/config');
+const server = require('./Infrastructures/http/server');
+const container = require('./Infrastructures/container');
 const app = express();
-const port = 7000;
 
-app.get('/', (req, res) => {
-  res.send('hello world');
+// setup server
+server(app, container);
+// start server
+app.listen(config.app.port, () => {
+  console.log(`Server running on port ${config.app.port}`);
 });
 
-
-app.listen(port, () => {
-  console.log(`server listening on port ${port}`);
-});
+module.exports = app;
