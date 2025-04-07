@@ -1,14 +1,17 @@
 const ClientError = require("../../../Commons/Exeptions/ClientError");
+const DomainErrorTranslator = require("../../../Commons/Exeptions/DomainErrorTranslator");
 
 function errorHandler(err, req, res, next) {
+
+  const translatedError = DomainErrorTranslator.translate(err);
   
-  if(err instanceof ClientError) {
-    res.status(err.statusCode).json({
+  if(translatedError instanceof ClientError) {
+    res.status(translatedError.statusCode).json({
       error: {
         status: 'fail',
-        code: err.statusCode,
-        message: err.message,
-        ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+        code: translatedError.statusCode,
+        message: translatedError.message,
+        ...(process.env.NODE_ENV === 'development' && { stack: translatedError.stack }),
       }
     });
   }else {
