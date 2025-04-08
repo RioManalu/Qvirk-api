@@ -36,6 +36,34 @@ class UserRepositoryPostgres extends UserRepository {
       throw new InvariantError('username is not available');
     }
   }
+
+  async getPasswordByUsername(username) {
+    const query = {
+      text: 'SELECT password FROM users WHERE username = $1',
+      values: [username],
+    };
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new InvariantError('username not found');
+    }
+    
+    return result.rows[0].password;
+  }
+
+  async getIdByUsername(username) {
+    const query = {
+      text: 'SELECT id FROM users WHERE username = $1',
+      values: [username],
+    };
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new InvariantError('username not found');
+    }
+
+    return result.rows[0].id;
+  }
 }
 
 module.exports = UserRepositoryPostgres;

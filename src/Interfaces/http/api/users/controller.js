@@ -7,14 +7,14 @@ class UserController {
     try {
       const payload = req.body;
       const adddedUser = await this._addUserUseCase.execute(payload);
-      res.send(JSON.stringify({
+      res.status(201).json({
         status: 'success',
         code: 201,
+        message: 'new user created',
         data: {
           adddedUser,
         }
-      }));
-      console.log('oke user controller', res.statusCode);
+      });
     } catch (error) {
       next(error);
     }

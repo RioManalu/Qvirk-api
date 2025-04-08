@@ -7,11 +7,13 @@ module.exports = (app, container) => {
 
   // load routes dari container
   const userRoutes = container.resolve('userRoutes');
+  const authenticationRoutes = container.resolve('authenticationRoutes');
   const errorHandler = container.resolve('errorHandler');
   
 
   // routes
   app.use('/api/users', userRoutes);
+  app.use('/api/authentications', authenticationRoutes);
 
   // error handling
   app.use(errorHandler);
