@@ -5,11 +5,11 @@ const InvariantError = require('../../../Commons/Exeptions/InvariantError');
 
 describe('AuthenticationRepositoryPostgres', () => {
   afterEach(async () => {
-    AuthenticationsTableTestHelper.cleanTable();
+    await AuthenticationsTableTestHelper.cleanTable();
   });
 
   afterAll(async () => {
-    pool.end();
+    await pool.end();
   });
 
   describe('addToken function', () => {

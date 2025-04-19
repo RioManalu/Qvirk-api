@@ -15,6 +15,8 @@ DomainErrorTranslator._directories = {
   'LOGIN_USER.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat login karena tipe data tidak sesuai'),
   'REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN': new InvariantError('tidak dapat refresh authentication karena properti yang dibutuhkan tidak ada'),
   'REFRESH_AUTHENTICATION_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak daspat refresh authentication karena tipe data tidak sesuai'),
+  'PROJECT.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada'),
+  'PROJECT.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat project baru karena tipe data tidak sesuai'),
 };
 
 module.exports = DomainErrorTranslator;

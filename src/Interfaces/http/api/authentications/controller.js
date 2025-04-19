@@ -12,7 +12,7 @@ class AuthenticationController {
   async postAuthentication(req, res, next) {
     try {
       const authentication = await this._loginUserUseCase.execute(req.body);
-      res.status(200).json({
+      res.status(201).json({
         status: 'success',
         code: 200,
         message: 'login successful',

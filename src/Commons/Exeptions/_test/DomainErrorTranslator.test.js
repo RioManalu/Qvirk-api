@@ -22,5 +22,17 @@ describe('DomaninErrorTranslator', () => {
       .toStrictEqual(new InvariantError('tidak dapat membuat user baru karena karakter username melebihi batas limit'));
     expect(DomainErrorTranslator.translate(new Error('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER')))
       .toStrictEqual(new InvariantError('tidak dapat membuat user baru karena username mengandung karakter terlarang'));
+    expect(DomainErrorTranslator.translate(new Error('LOGIN_USER.NOT_CONTAIN_NEEDED_PROPERTY')))
+      .toStrictEqual(new InvariantError('tidak dapat login karena properti yang dibutuhkan tidak ada'));
+    expect(DomainErrorTranslator.translate(new Error('LOGIN_USER.NOT_MEET_DATA_TYPE_SPECIFICATION')))
+      .toStrictEqual(new InvariantError('tidak dapat login karena tipe data tidak sesuai'));
+    expect(DomainErrorTranslator.translate(new Error('REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN')))
+      .toStrictEqual(new InvariantError('tidak dapat refresh authentication karena properti yang dibutuhkan tidak ada'));
+    expect(DomainErrorTranslator.translate(new Error('REFRESH_AUTHENTICATION_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION')))
+      .toStrictEqual(new InvariantError('tidak daspat refresh authentication karena tipe data tidak sesuai'));
+    expect(DomainErrorTranslator.translate(new Error('PROJECT.NOT_CONTAIN_NEEDED_PROPERTY')))
+      .toStrictEqual(new InvariantError('tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada'));
+    expect(DomainErrorTranslator.translate(new Error('PROJECT.NOT_MEET_DATA_TYPE_SPECIFICATION')))
+      .toStrictEqual(new InvariantError('tidak dapat membuat project baru karena tipe data tidak sesuai'));
   });
 });
