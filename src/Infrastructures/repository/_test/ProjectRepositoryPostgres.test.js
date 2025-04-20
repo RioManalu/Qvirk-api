@@ -2,6 +2,8 @@ const ProjectRepositoryPostgres = require('../ProjectRepositoryPostgres');
 const pool = require('../../../../config/database/postgres/pool');
 const ProjectsTableTestHelper = require('../../../../tests/testHelper/ProjectsTableTestHelper');
 const UsersTableTestHelper = require('../../../../tests/testHelper/UsersTableTestHelper');
+const NotFoundError = require('../../../Commons/Exeptions/NotFoundError');
+const AuthorizationError = require('../../../Commons/Exeptions/AuthorizationError');
 
 describe('ProjectRepositoryPostgres', () => {
   afterEach(async () => {
@@ -82,6 +84,86 @@ describe('ProjectRepositoryPostgres', () => {
         description: 'project-description',
         owner: 'username',
       }]);
+    });
+  });
+
+  describe('getProjectById function', () => {
+    it('should return project object correctly', async () => {
+      // Arrange
+      const projectId = 'project-123'
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action
+      const project = await projectRepositoryPostgres.getProjectById(projectId);
+
+      // Assert
+      expect(project).toStrictEqual({
+        name: 'project-name',
+        description: 'project-description',
+        owner: 'username',
+        created_at: new Date(project.created_at),
+        updated_at: new Date(project.updated_at),
+      });
+    });
+  });
+
+  describe('verifyProjectOwner', () => {
+    it('should throw NotFound Error when project not found', async () => {
+      // Arrange
+      const payload = {
+        id: 'project-234',
+        owner: 'user-234',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(projectRepositoryPostgres.verifyProjectOwner(payload.id, payload.owner))
+        .rejects
+        .toThrow(new NotFoundError('Project Not Found'));
+    });
+
+    it('should throw Authorization Error when owner not verified', async () => {
+      // Arrange
+      const payload = {
+        id: 'project-123',
+        owner: 'user-234',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(projectRepositoryPostgres.verifyProjectOwner(payload.id, payload.owner))
+        .rejects
+        .toThrow(new AuthorizationError('Access Denied'));
+    });
+
+    it('should not throw NotFound Error and Authorization Error when owner verified', async () => {
+      // Arrange
+      const payload = {
+        id: 'project-123',
+        owner: 'user-123',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(projectRepositoryPostgres.verifyProjectOwner(payload.id, payload.owner))
+        .resolves
+        .not.toThrow(new NotFoundError('Project Not Found'), new AuthorizationError('Access Denied'));
     });
   });
 });

@@ -8,5 +8,7 @@ describe('ProjectRepository', () => {
     // Action & Assert
     await expect(projectRepository.addProject('')).rejects.toThrow('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(projectRepository.getProjects('')).rejects.toThrow('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    await expect(projectRepository.getProjectById('')).rejects.toThrow('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    await expect(projectRepository.verifyProjectOwner('')).rejects.toThrow('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   });
 });

@@ -5,6 +5,7 @@ function projectRoutes({ projectController, getBearerToken }) {
 
   router.post('/', getBearerToken, projectController.postProject.bind(projectController));
   router.get('/', getBearerToken, projectController.getProjects.bind(projectController));
+  router.get('/:projectId', getBearerToken, projectController.getProjectById.bind(projectController));
 
   return router;
 }

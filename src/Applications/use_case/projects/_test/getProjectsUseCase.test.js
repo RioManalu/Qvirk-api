@@ -1,6 +1,6 @@
-const GetProjectsUseCase = require('../getProjectsUseCase');
+const GetProjectsUseCase = require('../GetProjectsUseCase');
 const ProjectRepository = require('../../../../Domains/projects/ProjectRepository');
-const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger')
+const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger');
 
 describe('getProjectUseCase', () => {
   it('should orchestrating get project use case correctly', async () => {
