@@ -3,10 +3,12 @@ class ProjectController {
     addProjectUseCase,
     getProjectsUseCase,
     getProjectByIdUseCase,
+    editProjectUseCase,
   }) {
     this._addProjectUseCase = addProjectUseCase;
     this._getProjectsUseCase = getProjectsUseCase;
     this._getProjectByIdUseCase = getProjectByIdUseCase;
+    this._editProjectUseCase = editProjectUseCase;
   }
 
   async postProject(req, res, next) {
@@ -60,6 +62,27 @@ class ProjectController {
         message: 'Project retrieved successfully',
         data: {
           project,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async putProjectById(req, res, next) {
+    try {
+      const payload = {
+        projectId: req.params.projectId,
+        token: req.token,
+        ...req.body
+      };
+  
+      const changes = await this._editProjectUseCase.execute(payload);
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        data: {
+          changes,
         },
       });
     } catch (error) {

@@ -73,6 +73,23 @@ class ProjectRepositoryPostgres extends ProjectRepository{
       throw new AuthorizationError('Access Denied');
     }
   }
+
+  async editProjectById(payload) {
+    const { projectId, name, description } = payload;
+    const query = {
+      text: `UPDATE projects
+            SET
+            name = COALESCE($1, name),
+            description = COALESCE($2, description),
+            updated_at = NOW()
+            WHERE id = $3
+            RETURNING name, description, updated_at`,
+      values: [name, description, projectId],
+    };
+
+    const result = await this._pool.query(query);
+    return result.rows[0];
+  }
 }
 
 module.exports = ProjectRepositoryPostgres;

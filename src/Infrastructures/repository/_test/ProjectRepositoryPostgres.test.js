@@ -166,4 +166,55 @@ describe('ProjectRepositoryPostgres', () => {
         .not.toThrow(new NotFoundError('Project Not Found'), new AuthorizationError('Access Denied'));
     });
   });
+
+  describe('editProjectById', () => {
+    it('should return changes object correctly', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        name: 'new project name',
+        description: 'new project description',
+      };
+
+      // create dependencies
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action
+      const changes = await projectRepositoryPostgres.editProjectById(payload);
+
+      // Assert
+      expect(changes).toStrictEqual({
+        name: payload.name,
+        description: payload.description,
+        updated_at: new Date(changes.updated_at),
+      });
+    });
+
+    it('should maintain project attribute when not changed', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        name: 'new project name',
+      };
+
+      // create dependencies
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action
+      const changes = await projectRepositoryPostgres.editProjectById(payload);
+
+      // Assert
+      expect(changes).toStrictEqual({
+        name: payload.name,
+        description: 'project-description',
+        updated_at: new Date(changes.updated_at),
+      });
+    });
+  })
 });

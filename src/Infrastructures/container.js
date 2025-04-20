@@ -25,6 +25,7 @@ const RefreshAuthenticationUseCase = require('../Applications/use_case/authentic
 const AddProjectUseCase = require('../Applications/use_case/projects/AddProjectUseCase');
 const GetProjectsUseCase = require('../Applications/use_case/projects/GetProjectsUseCase');
 const GetProjectByIdUseCase = require('../Applications/use_case/projects/GetProjectByIdUseCase');
+const EditProjectUseCase = require('../Applications/use_case/projects/EditProjectByIdUseCase');
 
 
 // Controller
@@ -42,6 +43,7 @@ const projectRoutes = require('../Interfaces/http/api/projects/routes');
 // Middlewares
 const errorHandler = require('./http/shared/errorHandler');
 const getBearerToken = require('./http/shared/authMiddleware');
+const editableProjectFields = require('../Interfaces/http/api/projects/middlewares');
 
 
 
@@ -70,6 +72,7 @@ container.register({
 container.register({
   errorHandler: asValue(errorHandler),
   getBearerToken: asValue(getBearerToken),
+  editableProjectFields: asValue(editableProjectFields),
 });
 
 
@@ -82,6 +85,7 @@ container.register({
   addProjectUseCase: asClass(AddProjectUseCase),
   getProjectsUseCase: asClass(GetProjectsUseCase),
   getProjectByIdUseCase: asClass(GetProjectByIdUseCase),
+  editProjectUseCase: asClass(EditProjectUseCase),
 });
 
 
