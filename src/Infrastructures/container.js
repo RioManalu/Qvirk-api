@@ -23,6 +23,7 @@ const LoginUserUseCase = require('../Applications/use_case/users/LoginUserUseCas
 const LogoutUserUseCase = require('../Applications/use_case/users/LogoutUserUseCase');
 const RefreshAuthenticationUseCase = require('../Applications/use_case/authentications/RefreshAuthenticationUseCase');
 const AddProjectUseCase = require('../Applications/use_case/projects/AddProjectUseCase');
+const GetProjectsUseCase = require('../Applications/use_case/projects/getProjectsUseCase');
 
 
 // Controller
@@ -78,6 +79,7 @@ container.register({
   logoutUserUseCase: asClass(LogoutUserUseCase),
   refreshAuthenticationUseCase: asClass(RefreshAuthenticationUseCase),
   addProjectUseCase: asClass(AddProjectUseCase),
+  getProjectsUseCase: asClass(GetProjectsUseCase),
 });
 
 

@@ -59,4 +59,29 @@ describe('ProjectRepositoryPostgres', () => {
       expect(addedProject.created_by).toEqual(payload.created_by);
     });
   });
+
+  describe('getProjects function', () => {
+    it('should return projects object correctly', async () => {
+      // Arrange
+      const payload = {
+        owner: 'user-123',
+      };
+
+      // prepare dependencies
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action
+      const projects = await projectRepositoryPostgres.getProjects(payload.owner);
+
+      // Assert
+      expect(projects).toEqual([{
+        name: 'project-name',
+        description: 'project-description',
+        owner: 'username',
+      }]);
+    });
+  });
 });

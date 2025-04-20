@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745078200321" clover="3.2.0">
-  <project timestamp="1745078200321" name="All files">
-    <metrics statements="259" coveredstatements="259" conditionals="92" coveredconditionals="92" methods="68" coveredmethods="68" elements="419" coveredelements="419" complexity="0" loc="259" ncloc="259" packages="15" files="29" classes="29"/>
+<coverage generated="1745123238028" clover="3.2.0">
+  <project timestamp="1745123238028" name="All files">
+    <metrics statements="268" coveredstatements="268" conditionals="92" coveredconditionals="92" methods="72" coveredmethods="72" elements="432" coveredelements="432" complexity="0" loc="268" ncloc="268" packages="15" files="30" classes="30"/>
     <package name="config.database.postgres">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="pool.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\config\database\postgres\pool.js">
@@ -20,7 +20,7 @@
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
       </file>
       <file name="Passwordhash.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\security\Passwordhash.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -49,7 +49,7 @@
       </file>
     </package>
     <package name="src.Applications.use_case.projects">
-      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="AddProjectUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\AddProjectUseCase.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -61,6 +61,14 @@
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
+      </file>
+      <file name="getProjectsUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\getProjectsUseCase.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.Applications.use_case.users">
@@ -183,11 +191,12 @@
       </file>
     </package>
     <package name="src.Domains.projects">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="ProjectRepository.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Domains\projects\ProjectRepository.js">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
       </file>
     </package>
     <package name="src.Domains.projects.entities">
@@ -277,7 +286,7 @@
       </file>
     </package>
     <package name="src.Infrastructures.repository">
-      <metrics statements="59" coveredstatements="59" conditionals="10" coveredconditionals="10" methods="12" coveredmethods="12"/>
+      <metrics statements="62" coveredstatements="62" conditionals="10" coveredconditionals="10" methods="13" coveredmethods="13"/>
       <file name="AuthenticationRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\AuthenticationRepositoryPostgres.js">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
@@ -295,10 +304,10 @@
         <line num="41" count="1" type="stmt"/>
       </file>
       <file name="ProjectRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\ProjectRepositoryPostgres.js">
-        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
@@ -308,6 +317,9 @@
         <line num="21" count="2" type="stmt"/>
         <line num="23" count="2" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
       </file>
       <file name="UserRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\UserRepositoryPostgres.js">
         <metrics statements="34" coveredstatements="34" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
@@ -384,12 +396,12 @@
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="8" count="10" type="stmt"/>
-        <line num="13" count="10" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="27" count="12" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
         <line num="31" count="2" type="stmt"/>
       </file>
     </package>

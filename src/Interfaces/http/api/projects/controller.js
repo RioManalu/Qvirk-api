@@ -1,8 +1,10 @@
 class ProjectController {
   constructor({ 
-    addProjectUseCase
+    addProjectUseCase,
+    getProjectsUseCase,
   }) {
     this._addProjectUseCase = addProjectUseCase;
+    this._getProjectsUseCase = getProjectsUseCase;
   }
 
   async postProject(req, res, next) {
@@ -23,6 +25,22 @@ class ProjectController {
       });
     } catch (error) {
       next(error)
+    }
+  }
+
+  async getProjects(req, res, next) {
+    const projects = await this._getProjectsUseCase.execute(req.token);
+    try {
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Projects retrieved successfully',
+        data: {
+          projects,
+        }
+      });
+    } catch (error) {
+      next(error);
     }
   }
 }

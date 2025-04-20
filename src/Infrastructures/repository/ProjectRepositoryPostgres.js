@@ -22,6 +22,21 @@ class ProjectRepositoryPostgres {
 
     return new AddedProject({ ...result.rows[0] });
   }
+
+  async getProjects(owner) {
+    const query = {
+      text: `SELECT projects.name, projects.description, users.username as owner
+            FROM projects
+            JOIN users
+            ON projects.created_by = users.id
+            WHERE projects.created_by = $1
+            ORDER BY projects.created_at`,
+      values: [owner],
+    }
+
+    const result = await this._pool.query(query);
+    return result.rows;
+  }
 }
 
 module.exports = ProjectRepositoryPostgres;
