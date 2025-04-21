@@ -9,6 +9,7 @@ module.exports = (app, container) => {
   const userRoutes = container.resolve('userRoutes');
   const authenticationRoutes = container.resolve('authenticationRoutes');
   const projectRoutes = container.resolve('projectRoutes');
+  const memberRoutes = container.resolve('memberRoutes');
   const errorHandler = container.resolve('errorHandler');
   
 
@@ -16,6 +17,7 @@ module.exports = (app, container) => {
   app.use('/api/users', userRoutes);
   app.use('/api/authentications', authenticationRoutes);
   app.use('/api/projects', projectRoutes);
+  app.use('/api/members', memberRoutes);
 
   // error handling
   app.use(errorHandler);
