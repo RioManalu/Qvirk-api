@@ -3,6 +3,23 @@ const ProjectRepository = require('../../../../Domains/projects/ProjectRepositor
 const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger');
 
 describe('EditProjectUseCase', () => {
+  it('should throw error when payload not meet data type specification', async () => {
+    // Arrange
+        const payload = {
+      projectId: 'project-123',
+      token: 'token',
+      name: 123,
+      description: {},
+    };
+
+    const editProjectUseCase = new EditProjectUseCase({});
+
+    // Action & Assert
+    await expect(editProjectUseCase.execute(payload))
+      .rejects
+      .toThrow('EDIT_PROJECT.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION');
+  })
+
   it('should orchestrating edit project use case correctly', async () => {
     // Arrange
     const payload = {

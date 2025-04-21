@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745167568517" clover="3.2.0">
-  <project timestamp="1745167568517" name="All files">
-    <metrics statements="315" coveredstatements="315" conditionals="100" coveredconditionals="100" methods="85" coveredmethods="85" elements="500" coveredelements="500" complexity="0" loc="315" ncloc="315" packages="16" files="33" classes="33"/>
+<coverage generated="1745223113181" clover="3.2.0">
+  <project timestamp="1745223113181" name="All files">
+    <metrics statements="318" coveredstatements="318" conditionals="104" coveredconditionals="104" methods="86" coveredmethods="86" elements="508" coveredelements="508" complexity="0" loc="318" ncloc="318" packages="16" files="33" classes="33"/>
     <package name="config.database.postgres">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="pool.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\config\database\postgres\pool.js">
@@ -49,7 +49,7 @@
       </file>
     </package>
     <package name="src.Applications.use_case.projects">
-      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
+      <metrics statements="29" coveredstatements="29" conditionals="4" coveredconditionals="4" methods="9" coveredmethods="9"/>
       <file name="AddProjectUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\AddProjectUseCase.js">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
@@ -62,14 +62,17 @@
         <line num="14" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
-      <file name="EditProjectUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\EditProjectUseCase.js">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+      <file name="EditProjectByIdUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\EditProjectByIdUseCase.js">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
       </file>
       <file name="GetProjectByIdUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\projects\GetProjectByIdUseCase.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
