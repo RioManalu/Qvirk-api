@@ -4,11 +4,13 @@ class ProjectController {
     getProjectsUseCase,
     getProjectByIdUseCase,
     editProjectUseCase,
+    deleteProjectByIdUseCase,
   }) {
     this._addProjectUseCase = addProjectUseCase;
     this._getProjectsUseCase = getProjectsUseCase;
     this._getProjectByIdUseCase = getProjectByIdUseCase;
     this._editProjectUseCase = editProjectUseCase;
+    this._deleteProjectByIdUseCase = deleteProjectByIdUseCase;
   }
 
   async postProject(req, res, next) {
@@ -86,6 +88,19 @@ class ProjectController {
           changes,
         },
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteProjectById(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+      };
+      await this._deleteProjectByIdUseCase.execute(payload);
+      res.status(204).json({});
     } catch (error) {
       next(error);
     }

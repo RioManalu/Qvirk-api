@@ -11,6 +11,7 @@ function projectRoutes({
   router.get('/', getBearerToken, projectController.getProjects.bind(projectController));
   router.get('/:projectId', getBearerToken, projectController.getProjectById.bind(projectController));
   router.put('/:projectId', getBearerToken, editableProjectFields, projectController.putProjectById.bind(projectController));
+  router.delete('/:projectId', getBearerToken, projectController.deleteProjectById.bind(projectController));
 
   return router;
 }

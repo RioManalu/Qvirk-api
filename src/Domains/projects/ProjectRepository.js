@@ -18,6 +18,10 @@ class ProjectRepository {
   async editProjectById(payload) {
     throw new Error('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
+
+  async deleteProjectById(id) {
+    throw new Error('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
 }
 
 module.exports = ProjectRepository;

@@ -216,5 +216,23 @@ describe('ProjectRepositoryPostgres', () => {
         updated_at: new Date(changes.updated_at),
       });
     });
-  })
+  });
+
+  describe('deleteProjectById', () => {
+    it('should delete project by id from database correctly', async () => {
+      // Arrange
+      const projectId = 'project-123';
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const projectRepositoryPostgres = new ProjectRepositoryPostgres({ pool });
+
+      // Action
+      await projectRepositoryPostgres.deleteProjectById(projectId);
+
+      // Assert
+      expect(await ProjectsTableTestHelper.findProjectById(projectId)).toHaveLength(0);
+    });
+  });
 });

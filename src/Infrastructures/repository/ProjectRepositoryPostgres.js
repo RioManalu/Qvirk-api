@@ -90,6 +90,15 @@ class ProjectRepositoryPostgres extends ProjectRepository{
     const result = await this._pool.query(query);
     return result.rows[0];
   }
+
+  async deleteProjectById(id) {
+    const query = {
+      text: 'DELETE FROM projects WHERE id = $1',
+      values: [id],
+    };
+
+    await this._pool.query(query);
+  }
 }
 
 module.exports = ProjectRepositoryPostgres;
