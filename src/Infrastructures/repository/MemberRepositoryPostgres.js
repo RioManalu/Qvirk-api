@@ -39,6 +39,18 @@ class MemberRepositoryPostgres extends MemberRepository {
     const result = await this._pool.query(query);
     return result.rows;
   }
+
+  async deleteMemberById(projectId, userId) {
+    const query = {
+      text: 'DELETE FROM project_members WHERE project_id = $1 AND user_id = $2 RETURNING user_id',
+      values: [projectId, userId],
+    };
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Member Not Found');
+    }
+  }
 }
 
 module.exports = MemberRepositoryPostgres;

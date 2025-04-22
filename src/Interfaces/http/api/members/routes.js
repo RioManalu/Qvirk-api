@@ -8,6 +8,7 @@ function memberRoutes({
 
   router.post('/', getBearerToken, memberController.postMember.bind(memberController));
   router.get('/', getBearerToken, memberController.getMembers.bind(memberController));
+  router.delete('/:userId', getBearerToken, memberController.deleteMemberById.bind(memberController));
 
   return router;
 }

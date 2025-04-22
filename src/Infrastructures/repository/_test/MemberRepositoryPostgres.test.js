@@ -119,4 +119,45 @@ describe('MemberRepositoryPostgres', () => {
       }]);
     });
   });
+
+  describe('deleteMemberById', () => {
+    it('should throw not found error when member not exist', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        userId: 'user-234',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.userId))
+        .rejects
+        .toThrow(new NotFoundError('Member Not Found'));
+    });
+
+    it('should delete member from database correctly', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        userId: 'user-123',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action
+      await memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.userId);
+
+      // Assert
+      expect(await MembersTableTestHelper.findMemberById(payload.projectId, payload.userId)).toHaveLength(0);
+    });
+  });
 });

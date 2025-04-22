@@ -2,9 +2,11 @@ class MemberController {
   constructor({
     addMemberUseCase,
     getMembersUseCase,
+    deleteMemberByIdUseCase,
   }) {
     this._addMemberUseCase = addMemberUseCase;
     this._getMembersUseCase = getMembersUseCase;
+    this._deleteMemberByIdUseCase = deleteMemberByIdUseCase;
   }
 
   async postMember(req, res, next) {
@@ -45,6 +47,20 @@ class MemberController {
           members,
         },
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteMemberById(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+        userId: req.params.userId,
+      };
+      await this._deleteMemberByIdUseCase.execute(payload);
+      res.status(204).json({});
     } catch (error) {
       next(error);
     }

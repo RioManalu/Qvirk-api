@@ -10,6 +10,10 @@ class MemberRepository {
   async getMembers(projectId) {
     throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
+
+  async deleteMemberById(projectId, memberId) {
+    throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
 }
 
 module.exports = MemberRepository;
