@@ -11,7 +11,8 @@ class MemberController {
     try {
       const payload = {
         token: req.token,
-        projectId: req.body.projectId,
+        projectId: req.params.projectId,
+        userId: req.body.userId,
         role: req.body.role,
       };
   

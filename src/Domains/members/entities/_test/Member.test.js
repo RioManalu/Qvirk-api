@@ -4,7 +4,7 @@ describe('Member entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
     const payload = {
-      projectId: 'project-123',
+      userId: 'project-123',
     };
 
     // Action & Assert
@@ -14,7 +14,7 @@ describe('Member entities', () => {
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
     const payload = {
-      projectId: 123,
+      userId: 123,
       role: {},
     };
 
@@ -25,7 +25,7 @@ describe('Member entities', () => {
   it('should create member object correctly', () => {
     // Arrange
     const payload = {
-      projectId: 'project-123',
+      userId: 'project-123',
       role: 'member',
     };
 
@@ -33,7 +33,7 @@ describe('Member entities', () => {
     const member = new Member(payload);
 
     // Assert
-    expect(member.project_id).toEqual(payload.project_id);
+    expect(member.userId).toEqual(payload.userId);
     expect(member.role).toEqual(payload.role);
   });
 });

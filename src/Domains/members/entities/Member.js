@@ -2,17 +2,17 @@ class Member {
   constructor(payload) {
     this._verifyPayload(payload);
 
-    const { projectId, role } = payload;
-    this.projectId = projectId;
+    const { userId, role } = payload;
+    this.userId = userId;
     this.role = role;
   }
 
-  _verifyPayload({ projectId, role }) {
-    if(!projectId || !role) {
+  _verifyPayload({ userId, role }) {
+    if(!userId || !role) {
       throw new Error('MEMBER.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
-    if(typeof projectId !== 'string' || typeof role !== 'string') {
+    if(typeof userId !== 'string' || typeof role !== 'string') {
       throw new Error('MEMBER.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
   }
