@@ -1,5 +1,13 @@
 class MemberRepository {
+  async searchProject(projectId) {
+    throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+  
   async addMember(payload) {
+    throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+  
+  async getMembers(projectId) {
     throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }

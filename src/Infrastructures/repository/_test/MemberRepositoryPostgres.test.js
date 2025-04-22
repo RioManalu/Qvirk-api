@@ -3,6 +3,7 @@ const UsersTableTestHelper = require('../../../../tests/testHelper/UsersTableTes
 const ProjectsTableTestHelper = require('../../../../tests/testHelper/ProjectsTableTestHelper');
 const MembersTableTestHelper = require('../../../../tests/testHelper/MembersTableTestHelper');
 const pool = require('../../../../config/database/postgres/pool');
+const NotFoundError = require('../../../Commons/Exeptions/NotFoundError');
 
 describe('MemberRepositoryPostgres', () => {
   afterEach(async () => {
@@ -19,6 +20,35 @@ describe('MemberRepositoryPostgres', () => {
 
   afterAll(async () => {
     await pool.end();
+  });
+
+  describe('searchProject function', () => {
+    it('should throw not found error when project is not exist', async () => {
+      // Arrange
+      const projectId = 'project-234';
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(memberRepositoryPostgres.searchProject(projectId))
+        .rejects
+        .toThrow(new NotFoundError('Project Not Found'));
+    });
+
+    it('should not throw not found error when project is not exist', async () => {
+      // Arrange
+      const projectId = 'project-123';
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(memberRepositoryPostgres.searchProject(projectId))
+        .resolves
+        .not.toThrow(NotFoundError);
+    });
   });
 
   describe('addMember function', () => {
@@ -64,6 +94,29 @@ describe('MemberRepositoryPostgres', () => {
         user_id: 'user-123',
         role: 'member',
       });
+    });
+  });
+
+  describe('getMembers function', () => {
+    it('should return members correctly', async () => {
+      // Arrange
+      const projectId = 'project-123';
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action
+      const members = await memberRepositoryPostgres.getMembers(projectId);
+
+      // Assert
+      expect(members).toStrictEqual([{
+        project_id: 'project-123',
+        user_id: 'user-123',
+        role: 'member',
+      }]);
     });
   });
 });

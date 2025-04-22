@@ -29,6 +29,7 @@ const GetProjectByIdUseCase = require('../Applications/use_case/projects/GetProj
 const EditProjectUseCase = require('../Applications/use_case/projects/EditProjectByIdUseCase');
 const DeleteProjectByIdUseCase = require('../Applications/use_case/projects/DeleteProjectByIdUseCase');
 const AddMemberUseCase = require('../Applications/use_case/members/AddMemberUseCase');
+const GetMembersUseCase = require('../Applications/use_case/members/GetMembersUseCase');
 
 
 // Controller
@@ -94,6 +95,7 @@ container.register({
   editProjectUseCase: asClass(EditProjectUseCase),
   deleteProjectByIdUseCase: asClass(DeleteProjectByIdUseCase),
   addMemberUseCase: asClass(AddMemberUseCase),
+  getMembersUseCase: asClass(GetMembersUseCase),
 });
 
 

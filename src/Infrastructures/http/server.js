@@ -16,8 +16,8 @@ module.exports = (app, container) => {
   // routes
   app.use('/api/users', userRoutes);
   app.use('/api/authentications', authenticationRoutes);
+  app.use('/api/projects/:projectId/members', memberRoutes);
   app.use('/api/projects', projectRoutes);
-  app.use('/api/members', memberRoutes);
 
   // error handling
   app.use(errorHandler);

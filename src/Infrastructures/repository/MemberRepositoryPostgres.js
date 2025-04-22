@@ -1,3 +1,4 @@
+const NotFoundError = require('../../Commons/Exeptions/NotFoundError');
 const MemberRepository = require('../../Domains/members/MemberRepository');
 
 class MemberRepositoryPostgres extends MemberRepository {
@@ -5,6 +6,18 @@ class MemberRepositoryPostgres extends MemberRepository {
     super();
     this._pool = pool;
   };
+
+  async searchProject(projectId) {
+    const query = {
+      text: 'SELECT id FROM projects WHERE id = $1',
+      values: [projectId],
+    };
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Project Not Found');
+    }
+  }
 
   async addMember(payload) {
     const { projectId, userId, role } = payload;
@@ -15,6 +28,16 @@ class MemberRepositoryPostgres extends MemberRepository {
 
     const result = await this._pool.query(query);
     return result.rows[0];
+  }
+
+  async getMembers(projectId) {
+    const query = {
+      text: 'SELECT * FROM project_members WHERE project_id = $1',
+      values: [projectId],
+    };
+
+    const result = await this._pool.query(query);
+    return result.rows;
   }
 }
 

@@ -6,7 +6,7 @@ const MembersTableTestHelper = {
     project_id = 'project-123', user_id = 'user-123', role = 'member',
   }) {
     const query = {
-      text: 'INSERT INTO project_members VALUES($1, $2, $3, $4, $5, $6)',
+      text: 'INSERT INTO project_members VALUES($1, $2, $3)',
       values: [project_id, user_id, role],
     };
 

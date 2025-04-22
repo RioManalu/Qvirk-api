@@ -3,7 +3,7 @@ class ProjectRepository {
     throw new Error('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async getProjects() {
+  async getProjects(userId) {
     throw new Error('PROJECT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
