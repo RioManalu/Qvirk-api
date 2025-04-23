@@ -103,6 +103,7 @@ describe('MemberRepositoryPostgres', () => {
       const projectId = 'project-123';
 
       await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username-234' });
       await ProjectsTableTestHelper.addProject({});
       await MembersTableTestHelper.addMember({});
 
@@ -114,9 +115,54 @@ describe('MemberRepositoryPostgres', () => {
       // Assert
       expect(members).toStrictEqual([{
         project_id: 'project-123',
-        user_id: 'user-123',
+        user_id: 'user-234',
         role: 'member',
       }]);
+    });
+  });
+
+  describe('getMemberById function', () => {
+    it('should throw not found error when member not found', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        memberId: 'user-345',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await ProjectsTableTestHelper.addProject({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action
+      await expect(() => memberRepositoryPostgres.getMemberById(payload.projectId, payload.memberId))
+        .rejects
+        .toThrow(new NotFoundError('Member Not Found'));
+    });
+
+    it('should not throw not found error when member exist', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        memberId: 'user-234',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username-234' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+
+      const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
+
+      // Action
+      const member = await memberRepositoryPostgres.getMemberById(payload.projectId, payload.memberId);
+
+      // Assert
+      expect(member).toStrictEqual({
+        project_id: payload.projectId,
+        user_id: payload.memberId,
+        role: 'member',
+      });
     });
   });
 
@@ -125,17 +171,18 @@ describe('MemberRepositoryPostgres', () => {
       // Arrange
       const payload = {
         projectId: 'project-123',
-        userId: 'user-234',
+        memberId: 'user-345',
       };
 
       await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username-234' });
       await ProjectsTableTestHelper.addProject({});
       await MembersTableTestHelper.addMember({});
 
       const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
 
       // Action & Assert
-      await expect(memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.userId))
+      await expect(memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.memberId))
         .rejects
         .toThrow(new NotFoundError('Member Not Found'));
     });
@@ -144,20 +191,21 @@ describe('MemberRepositoryPostgres', () => {
       // Arrange
       const payload = {
         projectId: 'project-123',
-        userId: 'user-123',
+        memberId: 'user-234',
       };
 
       await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username-234' });
       await ProjectsTableTestHelper.addProject({});
       await MembersTableTestHelper.addMember({});
 
       const memberRepositoryPostgres = new MemberRepositoryPostgres({ pool });
 
       // Action
-      await memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.userId);
+      await memberRepositoryPostgres.deleteMemberById(payload.projectId, payload.memberId);
 
       // Assert
-      expect(await MembersTableTestHelper.findMemberById(payload.projectId, payload.userId)).toHaveLength(0);
+      expect(await MembersTableTestHelper.findMemberById(payload.projectId, payload.memberId)).toHaveLength(0);
     });
   });
 });

@@ -11,6 +11,10 @@ class MemberRepository {
     throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
+  async getMemberById(projectId, memberId) {
+    throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
   async deleteMemberById(projectId, memberId) {
     throw new Error('MEMBER_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }

@@ -20,6 +20,8 @@ DomainErrorTranslator._directories = {
   'EDIT_PROJECT.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat mengedit project karena tipe data tidak sesuai'),
   'MEMBER.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat membuat member baru karena properti yang dibutuhkan tidak ada'),
   'MEMBER.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat member baru karena tipe data tidak sesuai'),
+  'TASK.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat membuat task baru karena properti yang dibutuhkan tidak ada'),
+  'TASK.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat task baru karena tipe data tidak sesuai'),
 };
 
 module.exports = DomainErrorTranslator;

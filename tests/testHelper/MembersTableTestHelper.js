@@ -3,7 +3,7 @@ const pool = require('../../config/database/postgres/pool');
 
 const MembersTableTestHelper = {
   async addMember({
-    project_id = 'project-123', user_id = 'user-123', role = 'member',
+    project_id = 'project-123', user_id = 'user-234', role = 'member',
   }) {
     const query = {
       text: 'INSERT INTO project_members VALUES($1, $2, $3)',
