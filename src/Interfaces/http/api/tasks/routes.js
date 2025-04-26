@@ -4,6 +4,7 @@ function taskRoutes({ getBearerToken, taskController }) {
   const router = express.Router({ mergeParams: true });
 
   router.post('/', getBearerToken, taskController.postTask.bind(taskController));
+  router.get('/', getBearerToken, taskController.getTasks.bind(taskController));
 
   return router;
 }

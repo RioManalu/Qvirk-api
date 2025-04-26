@@ -1,8 +1,10 @@
 class TaskController {
   constructor({
     addTaskUseCase,
+    getTasksUseCase,
   }) {
     this._addTaskUseCase = addTaskUseCase;
+    this._getTasksUseCase = getTasksUseCase;
   }
 
   async postTask(req, res, next) {
@@ -20,6 +22,29 @@ class TaskController {
         message: 'New Task Created',
         data: {
           addedTask,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getTasks(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+        status: req.query.status,
+        priority: req.query.priority,
+      };
+      
+      const tasks = await this._getTasksUseCase.execute(payload);
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Tasks Retrieved Successfully',
+        data: {
+          tasks,
         },
       });
     } catch (error) {

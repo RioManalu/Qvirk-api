@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1745309804671" clover="3.2.0">
-  <project timestamp="1745309804672" name="All files">
-    <metrics statements="383" coveredstatements="383" conditionals="116" coveredconditionals="116" methods="107" coveredmethods="107" elements="606" coveredelements="606" complexity="0" loc="383" ncloc="383" packages="19" files="40" classes="40"/>
+<coverage generated="1745495677876" clover="3.2.0">
+  <project timestamp="1745495677876" name="All files">
+    <metrics statements="465" coveredstatements="463" conditionals="183" coveredconditionals="177" methods="122" coveredmethods="122" elements="770" coveredelements="762" complexity="0" loc="465" ncloc="465" packages="22" files="46" classes="46"/>
     <package name="config.database.postgres">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="pool.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\config\database\postgres\pool.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="4" type="stmt"/>
-        <line num="2" count="4" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.Applications.security">
@@ -20,7 +20,7 @@
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="19" count="12" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
       </file>
       <file name="Passwordhash.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\security\Passwordhash.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -135,6 +135,34 @@
         <line num="13" count="1" type="stmt"/>
       </file>
     </package>
+    <package name="src.Applications.use_case.tasks">
+      <metrics statements="19" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
+      <file name="AddTaskUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\tasks\AddTaskUseCase.js">
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+      <file name="GetTasksUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\tasks\GetTasksUseCase.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="src.Applications.use_case.users">
       <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
       <file name="AddUserUseCase.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Applications\use_case\users\AddUserUseCase.js">
@@ -199,11 +227,11 @@
       </file>
       <file name="ClientError.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Commons\Exeptions\ClientError.js">
         <metrics statements="6" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="3" count="56" type="stmt"/>
-        <line num="5" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="60" type="stmt"/>
+        <line num="5" count="60" type="cond" truecount="2" falsecount="0"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="9" count="55" type="stmt"/>
-        <line num="10" count="55" type="stmt"/>
+        <line num="9" count="59" type="stmt"/>
+        <line num="10" count="59" type="stmt"/>
         <line num="14" count="13" type="stmt"/>
       </file>
       <file name="DomainErrorTranslator.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Commons\Exeptions\DomainErrorTranslator.js">
@@ -212,20 +240,20 @@
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
       </file>
       <file name="InvariantError.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Commons\Exeptions\InvariantError.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="6" type="stmt"/>
-        <line num="5" count="34" type="stmt"/>
-        <line num="6" count="34" type="stmt"/>
+        <line num="5" count="36" type="stmt"/>
+        <line num="6" count="36" type="stmt"/>
         <line num="10" count="6" type="stmt"/>
       </file>
       <file name="NotFoundError.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Commons\Exeptions\NotFoundError.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="4" type="stmt"/>
-        <line num="5" count="11" type="stmt"/>
-        <line num="6" count="11" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="6" count="13" type="stmt"/>
         <line num="10" count="4" type="stmt"/>
       </file>
     </package>
@@ -255,14 +283,15 @@
       </file>
     </package>
     <package name="src.Domains.members">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
       <file name="MemberRepository.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Domains\members\MemberRepository.js">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="3" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
       </file>
     </package>
     <package name="src.Domains.members.entities">
@@ -290,7 +319,7 @@
         <line num="15" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="27" count="9" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
       </file>
     </package>
     <package name="src.Domains.projects.entities">
@@ -320,6 +349,59 @@
         <line num="16" count="4" type="cond" truecount="5" falsecount="0"/>
         <line num="17" count="1" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Domains.tasks">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="TaskRepository.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Domains\tasks\TaskRepository.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Domains.tasks.entities">
+      <metrics statements="35" coveredstatements="33" conditionals="47" coveredconditionals="43" methods="4" coveredmethods="4"/>
+      <file name="AddedTask.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Domains\tasks\entities\AddedTask.js">
+        <metrics statements="20" coveredstatements="19" conditionals="31" coveredconditionals="30" methods="2" coveredmethods="2"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="9" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="45" count="11" type="cond" truecount="10" falsecount="0"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="50" count="10" type="cond" truecount="10" falsecount="0"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="63" count="9" type="cond" truecount="10" falsecount="1"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+      </file>
+      <file name="Task.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Domains\tasks\entities\Task.js">
+        <metrics statements="15" coveredstatements="14" conditionals="16" coveredconditionals="13" methods="2" coveredmethods="2"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="15" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="3" type="cond" truecount="9" falsecount="3"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.Domains.users">
@@ -380,7 +462,7 @@
       </file>
     </package>
     <package name="src.Infrastructures.repository">
-      <metrics statements="102" coveredstatements="102" conditionals="18" coveredconditionals="18" methods="22" coveredmethods="22"/>
+      <metrics statements="126" coveredstatements="126" conditionals="36" coveredconditionals="35" methods="26" coveredmethods="26"/>
       <file name="AuthenticationRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\AuthenticationRepositoryPostgres.js">
         <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
@@ -398,11 +480,11 @@
         <line num="41" count="1" type="stmt"/>
       </file>
       <file name="MemberRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\MemberRepositoryPostgres.js">
-        <metrics statements="20" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <metrics statements="25" coveredstatements="25" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="6" count="7" type="stmt"/>
-        <line num="7" count="7" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
@@ -418,7 +500,12 @@
         <line num="49" count="2" type="stmt"/>
         <line num="50" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="51" count="1" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="64" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
       </file>
       <file name="ProjectRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\ProjectRepositoryPostgres.js">
         <metrics statements="35" coveredstatements="35" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
@@ -457,6 +544,28 @@
         <line num="95" count="1" type="stmt"/>
         <line num="100" count="1" type="stmt"/>
         <line num="104" count="1" type="stmt"/>
+      </file>
+      <file name="TaskRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\TaskRepositoryPostgres.js">
+        <metrics statements="19" coveredstatements="19" conditionals="16" coveredconditionals="15" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="50" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
       </file>
       <file name="UserRepositoryPostgres.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\src\Infrastructures\repository\UserRepositoryPostgres.js">
         <metrics statements="34" coveredstatements="34" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
@@ -550,16 +659,16 @@
       <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
       <file name="UsersTableTestHelper.js" path="C:\web\Project\Self-Project\02\Qvirk\Qvirk-api\tests\testHelper\UsersTableTestHelper.js">
         <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="8" count="24" type="stmt"/>
-        <line num="13" count="24" type="stmt"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="8" count="37" type="stmt"/>
+        <line num="13" count="37" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="27" count="27" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
+        <line num="27" count="33" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
       </file>
     </package>
   </project>

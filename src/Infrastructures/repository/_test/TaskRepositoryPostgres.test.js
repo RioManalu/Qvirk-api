@@ -122,4 +122,58 @@ describe('TaskRepositoryPostgres', () => {
       }));
     });
   });
+
+  describe('getTasks function', () => {
+    it('should return tasks object correctly', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        assigneeId: 'user-234',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username' });
+      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+      await TasksTableTestHelper.addTask({ id: 'task-234', description: 'description-2', status: 'in_progress', priority: 'medium' });
+      await TasksTableTestHelper.addTask({ id: 'task-345', description: 'description-3', status: 'done', priority: 'high', assignee_id: 'user-345' });
+
+      const taskRepositoryPostgres = new TaskRepositoryPostgres({ pool });
+
+      // Action
+      const tasks = await taskRepositoryPostgres.getTasks(payload);
+
+      // Assert
+      expect(tasks).toStrictEqual([
+        {
+          id: 'task-123',
+          title: 'task-title',
+          description: 'task-description',
+          status: 'todo',
+          priority: 'low',
+          due_date: new Date(tasks[0].due_date),
+          project_id: payload.projectId,
+          created_by: 'user-123',
+          assignee_id: payload.assigneeId,
+          created_at: new Date(tasks[0].created_at),
+          updated_at: new Date(tasks[0].updated_at)
+        },
+        {
+          id: 'task-234',
+          title: 'task-title',
+          description: 'description-2',
+          status: 'in_progress',
+          priority: 'medium',
+          due_date: new Date(tasks[1].due_date),
+          project_id: payload.projectId,
+          created_by: 'user-123',
+          assignee_id: payload.assigneeId,
+          created_at: new Date(tasks[1].created_at),
+          updated_at: new Date(tasks[1].updated_at)
+        }
+      ])
+    });
+  });
 });

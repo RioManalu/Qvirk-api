@@ -7,5 +7,6 @@ describe('TaskRepository', () => {
 
     // Action
     await expect(taskRepository.addTask).rejects.toThrow('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    await expect(taskRepository.getTasks).rejects.toThrow('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   });
 });

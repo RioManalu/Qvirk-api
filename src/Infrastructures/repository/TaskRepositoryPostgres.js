@@ -42,6 +42,23 @@ class TaskRepositoryPostgres extends TaskRepository{
     const result = await this._pool.query(query);
     return new AddedTask({ ...result.rows[0] });
   }
+
+  async getTasks(payload) {
+    const projectId = payload.projectId;
+    const status = payload.status ?? null;
+    const priority = payload.priority ?? null;
+    const assigneeId = payload.assigneeId ?? null;
+    const query = {
+      text: `SELECT * FROM tasks WHERE project_id = $1 
+            AND (status = $2 OR $2 IS NULL)
+            AND (priority = $3 OR $3 IS NULL)
+            AND (assignee_id = $4 OR $4 IS NULL)`,
+      values: [projectId, status, priority, assigneeId],
+    };
+
+    const result = await this._pool.query(query);
+    return result.rows;
+  }
 }
 
 module.exports = TaskRepositoryPostgres;
