@@ -110,6 +110,18 @@ class TaskRepositoryPostgres extends TaskRepository{
 
     return result.rows[0];
   }
+
+  async deleteTaskById(taskId) {
+    const query = {
+      text: 'DELETE FROM tasks WHERE id = $1 RETURNING id',
+      values: [taskId],
+    }
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Task Not Found');
+    }
+  }
 }
 
 module.exports = TaskRepositoryPostgres;

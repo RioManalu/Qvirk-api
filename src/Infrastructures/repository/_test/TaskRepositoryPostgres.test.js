@@ -279,4 +279,35 @@ describe('TaskRepositoryPostgres', () => {
       });
     });
   });
+
+  describe('deleteTaskById function', () => {
+    it('should throw not found error when task not found', async () => {
+      // Arrange
+      const taskId = 'task-234';
+
+      // Action & Assert
+      await expect(() => new TaskRepositoryPostgres({ pool }).deleteTaskById(taskId))
+        .rejects
+        .toThrow(new NotFoundError('Task Not Found'));
+    });
+
+    it('should delete task from database when task is exist', async () => {
+      // Arrange
+      const taskId = 'task-123';
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+
+      const taskRepositoryPostgres = new TaskRepositoryPostgres({ pool });
+
+      // Action
+      await taskRepositoryPostgres.deleteTaskById(taskId);
+
+      // Assert
+      expect(await TasksTableTestHelper.findTaskById(taskId)).toHaveLength(0);
+    });
+  });
 });

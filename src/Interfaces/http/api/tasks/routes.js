@@ -7,6 +7,7 @@ function taskRoutes({ getBearerToken, taskController }) {
   router.get('/', getBearerToken, taskController.getTasks.bind(taskController));
   router.get('/:taskId', getBearerToken, taskController.getTaskById.bind(taskController));
   router.put('/:taskId', getBearerToken, taskController.putTaskById.bind(taskController));
+  router.delete('/:taskId', getBearerToken, taskController.deleteTaskById.bind(taskController));
 
   return router;
 }

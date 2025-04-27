@@ -14,6 +14,10 @@ class TaskRepository {
   async editTaskById(payload) {
     throw new Error('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
+
+  async deleteTaskById(taskId) {
+    throw new Error('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
 }
 
 module.exports = TaskRepository;

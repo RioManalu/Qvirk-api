@@ -4,11 +4,13 @@ class TaskController {
     getTasksUseCase,
     getTaskByIdUseCase,
     editTaskByIdUseCase,
+    deleteTaskByIdUseCase,
   }) {
     this._addTaskUseCase = addTaskUseCase;
     this._getTasksUseCase = getTasksUseCase;
     this._getTaskByIdUseCase = getTaskByIdUseCase;
     this._editTaskByIdUseCase = editTaskByIdUseCase;
+    this._deleteTaskByIdUseCase = deleteTaskByIdUseCase;
   }
 
   async postTask(req, res, next) {
@@ -101,6 +103,21 @@ class TaskController {
           changes,
         },
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteTaskById(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+        taskId: req.params.taskId,
+      };
+      await this._deleteTaskByIdUseCase.execute(payload);
+
+      res.status(204).json({});
     } catch (error) {
       next(error);
     }
