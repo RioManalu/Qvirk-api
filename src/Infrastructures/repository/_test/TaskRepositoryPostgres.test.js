@@ -5,6 +5,7 @@ const ProjectsTableTestHelper = require('../../../../tests/testHelper/ProjectsTa
 const MembersTableTestHelper = require('../../../../tests/testHelper/MembersTableTestHelper');
 const TasksTableTestHelper = require('../../../../tests/testHelper/TasksTableTestHelper');
 const AddedTask = require('../../../Domains/tasks/entities/AddedTask');
+const NotFoundError = require('../../../Commons/Exeptions/NotFoundError');
 
 describe('TaskRepositoryPostgres', () => {
   afterEach(async () => {
@@ -174,6 +175,55 @@ describe('TaskRepositoryPostgres', () => {
           updated_at: new Date(tasks[1].updated_at)
         }
       ])
+    });
+  });
+
+  describe('getTaskById function', () => {
+    it('should throw not found error when task not found', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        taskId: 'task-234',
+      };
+
+      // Action & Assert
+      await expect(() => new TaskRepositoryPostgres({ pool }).getTaskById(payload))
+        .rejects
+        .toThrow(new NotFoundError('Task Not Found'));
+    });
+
+    it('should return task object correctly when task is exist', async () => {
+      // Arrange
+      const payload = {
+        projectId: 'project-123',
+        taskId: 'task-123',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+
+      const taskRepositoryPostgres = new TaskRepositoryPostgres({ pool });
+
+      // Action
+      const task = await taskRepositoryPostgres.getTaskById(payload);
+
+      // Assert
+      expect(task).toStrictEqual({
+        id: payload.taskId,
+        title: 'task-title',
+        description: 'task-description',
+        status: 'todo',
+        priority: 'low',
+        due_date: new Date(task.due_date),
+        project_id: payload.projectId,
+        created_by: 'user-123',
+        assignee_id: 'user-234',
+        created_at: new Date(task.created_at),
+        updated_at: new Date(task.updated_at),
+      });
     });
   });
 });

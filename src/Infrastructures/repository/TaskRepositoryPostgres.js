@@ -1,5 +1,6 @@
 const AddedTask = require("../../Domains/tasks/entities/AddedTask");
 const TaskRepository = require("../../Domains/tasks/TaskRepository");
+const NotFoundError = require('../../Commons/Exeptions/NotFoundError');
 
 class TaskRepositoryPostgres extends TaskRepository{
   constructor({ pool, idGenerator }) {
@@ -58,6 +59,20 @@ class TaskRepositoryPostgres extends TaskRepository{
 
     const result = await this._pool.query(query);
     return result.rows;
+  }
+
+  async getTaskById(taskId) {
+    const query = {
+      text: 'SELECT * FROM tasks WHERE id = $1',
+      values: [taskId],
+    }
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Task Not Found');
+    }
+
+    return result.rows[0];
   }
 }
 

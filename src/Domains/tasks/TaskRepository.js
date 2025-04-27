@@ -6,6 +6,10 @@ class TaskRepository {
   async getTasks(payload) {
     throw new Error('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
+
+  async getTaskById(payload) {
+    throw new Error('TASK_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
 }
 
 module.exports = TaskRepository;

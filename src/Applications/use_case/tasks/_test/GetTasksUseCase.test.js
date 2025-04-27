@@ -69,7 +69,7 @@ describe('GetTasksUseCase', () => {
       },
     ]);
     expect(mockAuthenticationTokenManager.decodePayload).toHaveBeenCalledWith(payload.token);
-    expect(mockMemberRepository.getMemberById).toHaveBeenCalledWith('user-123');
+    expect(mockMemberRepository.getMemberById).toHaveBeenCalledWith(payload.projectId,'user-123');
     expect(mockTaskRepository.getTasks).toHaveBeenCalledWith({
       projectId: payload.projectId,
       status: payload.status,
