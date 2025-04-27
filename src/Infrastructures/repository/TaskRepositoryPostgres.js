@@ -74,6 +74,42 @@ class TaskRepositoryPostgres extends TaskRepository{
 
     return result.rows[0];
   }
+
+  async editTaskById(payload) {
+    const {
+      taskId,
+      title,
+      description,
+      status,
+      priority,
+      due_date,
+      assigneeId
+    } = payload;
+
+    const date = new Date();
+
+    const query = {
+      text: `UPDATE tasks 
+            SET 
+            title = COALESCE($2, title),
+            description = COALESCE($3, description),
+            status = COALESCE($4, status),
+            priority = COALESCE($5, priority),
+            due_date = COALESCE($6, due_date),
+            assignee_id = COALESCE($7, assignee_id),
+            updated_at = $8
+            WHERE id = $1
+            RETURNING title, description, status, priority, due_date, assignee_id`,
+      values: [taskId, title, description, status, priority, due_date, assigneeId, date],
+    }
+
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Task Not Found');
+    }
+
+    return result.rows[0];
+  }
 }
 
 module.exports = TaskRepositoryPostgres;

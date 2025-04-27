@@ -182,12 +182,11 @@ describe('TaskRepositoryPostgres', () => {
     it('should throw not found error when task not found', async () => {
       // Arrange
       const payload = {
-        projectId: 'project-123',
         taskId: 'task-234',
       };
 
       // Action & Assert
-      await expect(() => new TaskRepositoryPostgres({ pool }).getTaskById(payload))
+      await expect(() => new TaskRepositoryPostgres({ pool }).getTaskById(payload.taskId))
         .rejects
         .toThrow(new NotFoundError('Task Not Found'));
     });
@@ -195,7 +194,6 @@ describe('TaskRepositoryPostgres', () => {
     it('should return task object correctly when task is exist', async () => {
       // Arrange
       const payload = {
-        projectId: 'project-123',
         taskId: 'task-123',
       };
 
@@ -208,7 +206,7 @@ describe('TaskRepositoryPostgres', () => {
       const taskRepositoryPostgres = new TaskRepositoryPostgres({ pool });
 
       // Action
-      const task = await taskRepositoryPostgres.getTaskById(payload);
+      const task = await taskRepositoryPostgres.getTaskById(payload.taskId);
 
       // Assert
       expect(task).toStrictEqual({
@@ -218,11 +216,66 @@ describe('TaskRepositoryPostgres', () => {
         status: 'todo',
         priority: 'low',
         due_date: new Date(task.due_date),
-        project_id: payload.projectId,
+        project_id: 'project-123',
         created_by: 'user-123',
         assignee_id: 'user-234',
         created_at: new Date(task.created_at),
         updated_at: new Date(task.updated_at),
+      });
+    });
+  });
+
+  describe('editTaskById function', () => {
+    it('should throw not found error when task not found', async () => {
+      // Arrange
+      const payload = {
+        taskId: 'task-234',
+        title: 'new-title',
+        description: 'new-description',
+        status: 'in_progress',
+        priority: 'high',
+        due_date: new Date(),
+        assigneeId: 'user-345',
+      };
+
+      // Action & Assert
+      await expect(() => new TaskRepositoryPostgres({ pool }).editTaskById(payload))
+        .rejects
+        .toThrow(new NotFoundError('Task Not Found'));
+    });
+
+    it('should return task changes object correctly when task is exist', async () => {
+      // Arrange
+      const payload = {
+        taskId: 'task-123',
+        title: 'new-title',
+        description: 'new-description',
+        status: 'in_progress',
+        priority: 'high',
+        due_date: new Date(),
+        assigneeId: 'user-345',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+
+      const taskRepositoryPostgres = new TaskRepositoryPostgres({ pool });
+
+      // Action
+      const task = await taskRepositoryPostgres.editTaskById(payload);
+
+      // Assert
+      expect(task).toStrictEqual({
+        title: payload.title,
+        description: payload.description,
+        status: payload.status,
+        priority: payload.priority,
+        due_date: new Date(task.due_date),
+        assignee_id: payload.assigneeId,
       });
     });
   });

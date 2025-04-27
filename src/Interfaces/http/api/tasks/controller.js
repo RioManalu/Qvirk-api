@@ -3,10 +3,12 @@ class TaskController {
     addTaskUseCase,
     getTasksUseCase,
     getTaskByIdUseCase,
+    editTaskByIdUseCase,
   }) {
     this._addTaskUseCase = addTaskUseCase;
     this._getTasksUseCase = getTasksUseCase;
     this._getTaskByIdUseCase = getTaskByIdUseCase;
+    this._editTaskByIdUseCase = editTaskByIdUseCase;
   }
 
   async postTask(req, res, next) {
@@ -69,6 +71,34 @@ class TaskController {
         message: 'Task Retrieved Successfully',
         data: {
           task,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async putTaskById(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        taskId: req.params.taskId,
+        projectId: req.params.projectId,
+        title: req.body.title,
+        description: req.body.description,
+        status: req.body.status,
+        priority: req.body.priority,
+        due_date: req.body.due_date,
+        assigneeId: req.body.assigneeId,
+      };
+      const changes = await this._editTaskByIdUseCase.execute(payload);
+
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Task Updated Successfully',
+        data: {
+          changes,
         },
       });
     } catch (error) {
