@@ -17,7 +17,7 @@ class EditTaskByIdUseCase {
     await this._memberRepository.searchProject(payload.projectId);
 
     if(payload.assigneeId) {
-      await this._memberRepository.getMemberById(payload.projectId, payload.assigneId);
+      await this._memberRepository.getMemberById(payload.projectId, payload.assigneeId);
     }
     
     return this._taskRepository.editTaskById({
@@ -27,7 +27,7 @@ class EditTaskByIdUseCase {
       status: payload.status,
       priority: payload.priority,
       due_date: payload.due_date,
-      assigneeId: payload.assigneId,
+      assigneeId: payload.assigneeId,
     });
   }
 }

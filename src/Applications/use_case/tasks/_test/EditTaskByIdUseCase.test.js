@@ -13,7 +13,7 @@ describe('EditTaskByIdUseCase', () => {
       taskId: 'task-123',
       title: 'task-title-new',
       status: 'in_progress',
-      assigneId: 'user-234',
+      assigneeId: 'user-234',
     };
 
     // mock needed classes
@@ -35,7 +35,7 @@ describe('EditTaskByIdUseCase', () => {
       .mockImplementation(() => Promise.resolve({
         title: payload.title,
         status: payload.status,
-        assigne_id: payload.assigneId,
+        assigne_id: payload.assigneeId,
       }))
 
     const editTaskByIdUseCase = new EditTaskByIdUseCase({
@@ -52,12 +52,12 @@ describe('EditTaskByIdUseCase', () => {
     expect(task).toStrictEqual({
       title: payload.title,
       status: payload.status,
-      assigne_id: payload.assigneId,
+      assigne_id: payload.assigneeId,
     });
     expect(mockAuthenticationTokenManager.decodePayload).toHaveBeenCalledWith(payload.token);
     expect(mockProjectRepository.verifyProjectOwner).toHaveBeenCalledWith(payload.projectId, 'user-123');
     expect(mockMemberRepository.searchProject).toHaveBeenCalledWith(payload.projectId);
-    expect(mockMemberRepository.getMemberById).toHaveBeenCalledWith(payload.projectId, payload.assigneId);
+    expect(mockMemberRepository.getMemberById).toHaveBeenCalledWith(payload.projectId, payload.assigneeId);
     expect(mockTaskRepository.editTaskById).toHaveBeenCalledWith({
       taskId: payload.taskId,
       title: payload.title,
@@ -65,7 +65,7 @@ describe('EditTaskByIdUseCase', () => {
       status: payload.status,
       priority: payload.priority,
       due_date: payload.due_date,
-      assignee_id: payload.assigneId,
+      assigneeId: payload.assigneeId,
     });
   });
 });
