@@ -87,4 +87,33 @@ describe('TaskRepositoryPostgres', () => {
       });
     });
   });
+
+  describe('getComments function', () => {
+    it('should return comments object correctly', async () => {
+      // Arrange
+      const taskId = 'task-123';
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+      await CommentsTableTestHelper.addComment({});
+
+      const commentRepositoryPostgres = new CommentRepositoryPostgres({ pool });
+
+      // Action
+      const comments = await commentRepositoryPostgres.getComments(taskId);
+
+      // Assert
+      expect(comments).toEqual([
+        {
+          id: 'comment-123',
+          content: 'content',
+          task_id: taskId,
+          username: 'username2',
+        }
+      ]);
+    });
+  });
 });

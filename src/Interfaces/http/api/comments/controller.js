@@ -1,8 +1,10 @@
 class CommentController {
   constructor({
     addCommentUseCase,
+    getCommentsUseCase,
   }) {
     this._addCommentUseCase = addCommentUseCase;
+    this._getCommentsUseCase = getCommentsUseCase;
   }
 
   async postComment(req, res, next) {
@@ -21,6 +23,28 @@ class CommentController {
         message: 'New Comment Created',
         data: {
           addedComment,
+        },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getComments(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+        taskId: req.params.taskId,
+      }
+
+      const comments = await this._getCommentsUseCase.execute(payload);
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'Comments Retrieved Successfully',
+        data: {
+          comments,
         },
       });
     } catch (error) {

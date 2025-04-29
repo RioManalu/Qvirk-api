@@ -4,6 +4,7 @@ function commentRoutes({ commentController, getBearerToken }) {
   const router = express.Router({ mergeParams: true });
 
   router.post('/', getBearerToken, commentController.postComment.bind(commentController));
+  router.get('/', getBearerToken, commentController.getComments.bind(commentController));
 
   return router;
 }

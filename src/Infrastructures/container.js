@@ -39,6 +39,7 @@ const GetTasByIdUseCase = require('../Applications/use_case/tasks/GetTaskByIdUse
 const EditTaskByIdUseCase = require('../Applications/use_case/tasks/EditTaskByIdUseCase');
 const DeleteTaskByIdUseCase = require('../Applications/use_case/tasks/DeleteTaskByIdUseCase');
 const AddCommentUseCase = require('../Applications/use_case/comments/AddCommentUseCase');
+const GetCommentsUseCase = require('../Applications/use_case/comments/GetCommentsUseCase');
 
 
 // Controller
@@ -118,6 +119,7 @@ container.register({
   editTaskByIdUseCase: asClass(EditTaskByIdUseCase),
   deleteTaskByIdUseCase: asClass(DeleteTaskByIdUseCase),
   addCommentUseCase: asClass(AddCommentUseCase),
+  getCommentsUseCase: asClass(GetCommentsUseCase),
 });
 
 
