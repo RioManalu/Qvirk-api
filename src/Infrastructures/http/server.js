@@ -11,6 +11,7 @@ module.exports = (app, container) => {
   const projectRoutes = container.resolve('projectRoutes');
   const memberRoutes = container.resolve('memberRoutes');
   const taskRoutes = container.resolve('taskRoutes');
+  const commentRoutes = container.resolve('commentRoutes');
   const errorHandler = container.resolve('errorHandler');
   
 
@@ -19,6 +20,7 @@ module.exports = (app, container) => {
   app.use('/api/authentications', authenticationRoutes);
   app.use('/api/projects/:projectId/members', memberRoutes);
   app.use('/api/projects/:projectId/tasks', taskRoutes);
+  app.use('/api/projects/:projectId/tasks/:taskId/comments', commentRoutes);
   app.use('/api/projects', projectRoutes);
 
   // error handling

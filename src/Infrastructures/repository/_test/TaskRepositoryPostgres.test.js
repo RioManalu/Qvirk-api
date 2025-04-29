@@ -133,8 +133,8 @@ describe('TaskRepositoryPostgres', () => {
       };
 
       await UsersTableTestHelper.addUser({});
-      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username' });
-      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username2' });
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username3' });
       await ProjectsTableTestHelper.addProject({});
       await MembersTableTestHelper.addMember({});
       await TasksTableTestHelper.addTask({});
@@ -258,7 +258,7 @@ describe('TaskRepositoryPostgres', () => {
 
       await UsersTableTestHelper.addUser({});
       await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
-      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username2' });
+      await UsersTableTestHelper.addUser({ id: 'user-345', username: 'username3' });
       await ProjectsTableTestHelper.addProject({});
       await MembersTableTestHelper.addMember({});
       await TasksTableTestHelper.addTask({});

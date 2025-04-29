@@ -17,6 +17,7 @@ const AuthenticationRepositoryPostgres = require('./repository/AuthenticationRep
 const ProjectRepositoryPostgres = require('./repository/ProjectRepositoryPostgres');
 const MemberRepositoryPostgres = require('./repository/MemberRepositoryPostgres');
 const TaskRepositoryPostgres = require('./repository/TaskRepositoryPostgres');
+const CommentRepositoryPostgres = require('./repository/CommentRepositoryPostgres');
 
 
 // use case
@@ -37,6 +38,7 @@ const GetTasksUseCase = require('../Applications/use_case/tasks/GetTasksUseCase'
 const GetTasByIdUseCase = require('../Applications/use_case/tasks/GetTaskByIdUseCase');
 const EditTaskByIdUseCase = require('../Applications/use_case/tasks/EditTaskByIdUseCase');
 const DeleteTaskByIdUseCase = require('../Applications/use_case/tasks/DeleteTaskByIdUseCase');
+const AddCommentUseCase = require('../Applications/use_case/comments/AddCommentUseCase');
 
 
 // Controller
@@ -45,6 +47,7 @@ const AuthenticationController = require('../Interfaces/http/api/authentications
 const ProjectController = require('../Interfaces/http/api/projects/controller');
 const MemberController = require('../Interfaces/http/api/members/controller');
 const TaskController = require('../Interfaces/http/api/tasks/controller');
+const CommentController = require('../Interfaces/http/api/comments/controller');
 
 
 // Routes
@@ -53,6 +56,7 @@ const authenticationRoutes = require('../Interfaces/http/api/authentications/rou
 const projectRoutes = require('../Interfaces/http/api/projects/routes');
 const memberRoutes = require('../Interfaces/http/api/members/routes');
 const taskRoutes = require('../Interfaces/http/api/tasks/routes');
+const commentRoutes = require('../Interfaces/http/api/comments/routes');
 
 
 // Middlewares
@@ -82,6 +86,7 @@ container.register({
   projectRepository: asClass(ProjectRepositoryPostgres),
   memberRepository: asClass(MemberRepositoryPostgres),
   taskRepository: asClass(TaskRepositoryPostgres),
+  commentRepository: asClass(CommentRepositoryPostgres),
 });
 
 
@@ -112,6 +117,7 @@ container.register({
   getTaskByIdUseCase: asClass(GetTasByIdUseCase),
   editTaskByIdUseCase: asClass(EditTaskByIdUseCase),
   deleteTaskByIdUseCase: asClass(DeleteTaskByIdUseCase),
+  addCommentUseCase: asClass(AddCommentUseCase),
 });
 
 
@@ -122,6 +128,7 @@ container.register({
   projectController: asClass(ProjectController),
   memberController: asClass(MemberController),
   taskController: asClass(TaskController),
+  commentController: asClass(CommentController),
 });
 
 
@@ -132,6 +139,7 @@ container.register({
   projectRoutes: asFunction(projectRoutes),
   memberRoutes: asFunction(memberRoutes),
   taskRoutes: asFunction(taskRoutes),
+  commentRoutes: asFunction(commentRoutes),
 });
 
 
