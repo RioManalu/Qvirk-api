@@ -24,6 +24,8 @@ DomainErrorTranslator._directories = {
   'TASK.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat task baru karena tipe data tidak sesuai'),
   'COMMENT.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat membuat comment baru karena properti yang dibutuhkan tidak ada'),
   'COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat membuat member baru karena tipe data tidak sesuai'),
+  'EDIT_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY': new InvariantError('tidak dapat mengubah comment karena properti yang dibutuhkan tidak ada'),
+  'EDIT_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION': new InvariantError('tidak dapat mengubah comment karena tipe data tidak sesuai'),
 };
 
 module.exports = DomainErrorTranslator;

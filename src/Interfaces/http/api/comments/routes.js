@@ -5,6 +5,7 @@ function commentRoutes({ commentController, getBearerToken }) {
 
   router.post('/', getBearerToken, commentController.postComment.bind(commentController));
   router.get('/', getBearerToken, commentController.getComments.bind(commentController));
+  router.put('/:commentId', getBearerToken, commentController.putCommentById.bind(commentController));
 
   return router;
 }

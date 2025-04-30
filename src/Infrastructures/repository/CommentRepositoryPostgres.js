@@ -1,4 +1,5 @@
 const CommentRepository = require("../../Domains/comments/CommentRepository");
+const NotFoundError = require('../../Commons/Exeptions/NotFoundError');
 
 class CommentRepositoryPostgres extends CommentRepository{
   constructor({ pool, idGenerator }) {
@@ -36,6 +37,20 @@ class CommentRepositoryPostgres extends CommentRepository{
     
     const result = await this._pool.query(query);
     return result.rows;
+  }
+
+  async editCommentById(payload) {
+    const { commentId, content } = payload;
+    const query = {
+      text: 'UPDATE task_comments SET content = $1 WHERE id = $2 RETURNING content',
+      values: [content, commentId],
+    };
+    
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Comment Not Found');
+    }
+    return result.rows[0];
   }
 }
 

@@ -5,6 +5,7 @@ const ProjectsTableTestHelper = require('../../../../tests/testHelper/ProjectsTa
 const MembersTableTestHelper = require('../../../../tests/testHelper/MembersTableTestHelper');
 const TasksTableTestHelper = require('../../../../tests/testHelper/TasksTableTestHelper');
 const CommentsTableTestHelper = require('../../../../tests/testHelper/CommentsTableTestHelper');
+const NotFoundError = require('../../../Commons/Exeptions/NotFoundError');
 
 describe('TaskRepositoryPostgres', () => {
   afterEach(async () => {
@@ -114,6 +115,48 @@ describe('TaskRepositoryPostgres', () => {
           username: 'username2',
         }
       ]);
+    });
+  });
+
+  describe('editCommentById function', () => {
+    it('should throw not found error when comment not found', async () => {
+      // Arrange
+      const payload = {
+        commentId: 'comment-123',
+        content: 'new-content',
+      };
+
+      const commentRepositoryPostgres = new CommentRepositoryPostgres({ pool });
+
+      // Action & Assert
+      await expect(commentRepositoryPostgres.editCommentById(payload))
+        .rejects
+        .toThrow(new NotFoundError('Comment Not Found'));
+    });
+
+    it('should return changes object correctly', async () => {
+      // Arrange
+      const payload = {
+        commentId: 'comment-123',
+        content: 'new-content',
+      };
+
+      await UsersTableTestHelper.addUser({});
+      await UsersTableTestHelper.addUser({ id: 'user-234', username: 'username2' });
+      await ProjectsTableTestHelper.addProject({});
+      await MembersTableTestHelper.addMember({});
+      await TasksTableTestHelper.addTask({});
+      await CommentsTableTestHelper.addComment({});
+
+      const commentRepositoryPostgres = new CommentRepositoryPostgres({ pool });
+
+      // Action
+      const changes = await commentRepositoryPostgres.editCommentById(payload);
+
+      // Assert
+      expect(changes).toEqual({
+        content: payload.content,
+      });
     });
   });
 });
