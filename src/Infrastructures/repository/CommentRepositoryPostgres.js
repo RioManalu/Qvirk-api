@@ -1,5 +1,6 @@
 const CommentRepository = require("../../Domains/comments/CommentRepository");
 const NotFoundError = require('../../Commons/Exeptions/NotFoundError');
+const AuthorizationError = require('../../Commons/Exeptions/AuthorizationError');
 
 class CommentRepositoryPostgres extends CommentRepository{
   constructor({ pool, idGenerator }) {
@@ -51,6 +52,36 @@ class CommentRepositoryPostgres extends CommentRepository{
       throw new NotFoundError('Comment Not Found');
     }
     return result.rows[0];
+  }
+
+  async deleteCommentById(commentId) {
+    const query = {
+      text: 'DELETE FROM task_comments WHERE id = $1 RETURNING id',
+      values: [commentId],
+    };
+    
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Comment Not Found');
+    }
+  }
+
+  async verifyCommentOwner(payload) {
+    const { commentId, userId } = payload;
+    const query = {
+      text: 'SELECT user_id from task_comments WHERE id = $1',
+      values: [commentId],
+    };
+    
+    const result = await this._pool.query(query);
+    if(!result.rows.length) {
+      throw new NotFoundError('Comment Not Found');
+    }
+
+    const verified = userId === result.rows[0].user_id;
+    if(!verified) {
+      throw new AuthorizationError('Access Denied');
+    }
   }
 }
 

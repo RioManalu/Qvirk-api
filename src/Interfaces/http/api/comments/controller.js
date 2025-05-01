@@ -3,10 +3,12 @@ class CommentController {
     addCommentUseCase,
     getCommentsUseCase,
     editCommentByIdUseCase,
+    deleteCommentByIdUseCase,
   }) {
     this._addCommentUseCase = addCommentUseCase;
     this._getCommentsUseCase = getCommentsUseCase;
     this._editCommentByIdUseCase = editCommentByIdUseCase;
+    this._deleteCommentByIdUseCase = deleteCommentByIdUseCase;
   }
 
   async postComment(req, res, next) {
@@ -73,6 +75,22 @@ class CommentController {
           changes,
         },
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteCommentById(req, res, next) {
+    try {
+      const payload = {
+        token: req.token,
+        projectId: req.params.projectId,
+        taskId: req.params.taskId,
+        commentId: req.params.commentId,
+      }
+
+      await this._deleteCommentByIdUseCase.execute(payload);
+      res.status(204).json({});
     } catch (error) {
       next(error);
     }

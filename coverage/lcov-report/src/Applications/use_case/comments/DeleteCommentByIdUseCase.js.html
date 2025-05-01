@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/Domains/projects/entities/AddedProject.js</title>
+    <title>Code coverage report for src/Applications/use_case/comments/DeleteCommentByIdUseCase.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/Domains/projects/entities</a> AddedProject.js</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/Applications/use_case/comments</a> DeleteCommentByIdUseCase.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -84,49 +84,64 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">class AddedProject {
-  constructor(payload) {
-    this._verifyPayload(payload);
-&nbsp;
-    const { id, name, created_by } = payload;
-    this.id = id;
-    this.name = name;
-    this.created_by = created_by;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class DeleteCommentByIdUseCase {
+  constructor({ 
+    commentRepository,
+    memberRepository,
+    taskRepository,
+    authenticationTokenManager,}) {
+    this._commentRepository = commentRepository;
+    this._memberRepository = memberRepository;
+    this._taskRepository = taskRepository;
+    this._authenticationTokenManager = authenticationTokenManager;
   }
 &nbsp;
-  _verifyPayload({ id, name, created_by }) {
-    if(!id || !name || !created_by) {
-      throw new Error('ADDED_PROJECT.NOT_CONTAIN_NEEDED_PROPERTY');
-    }
-&nbsp;
-    if(typeof id !== 'string' || typeof name !== 'string' || typeof created_by !== 'string') {
-      throw new Error('ADDED_PROJECT.NOT_MEET_DATA_TYPE_SPECIFICATION');
-    }
+  async execute(payload) {
+    const { id: userId } = await this._authenticationTokenManager.decodePayload(payload.token);
+    await this._memberRepository.searchProject(payload.projectId);
+    await this._taskRepository.getTaskById(payload.taskId);
+    await this._commentRepository.verifyCommentOwner({
+      userId,
+      commentId: payload.commentId,
+    });
+    return this._commentRepository.deleteCommentById(payload.commentId);
   }
 }
 &nbsp;
-module.exports = AddedProject;</pre></td></tr></table></pre>
+module.exports = DeleteCommentByIdUseCase;
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
