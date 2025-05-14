@@ -3,6 +3,7 @@ const TaskRepository = require('../../../../Domains/tasks/TaskRepository');
 const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger');
 const ProjectRepository = require('../../../../Domains/projects/ProjectRepository');
 const EditTaskByIdUseCase = require('../EditTaskByIdUseCase');
+const ActivityLogRepository = require('../../../../Domains/activityLogs/ActivityLogRepository');
 
 describe('EditTaskByIdUseCase', () => {
   it('should orchestrating edit task by id use case correctly', async () => {
@@ -21,6 +22,7 @@ describe('EditTaskByIdUseCase', () => {
     const mockProjectRepository = new ProjectRepository();
     const mockMemberRepository = new MemberRepository();
     const mockAuthenticationTokenManager = new AuthenticationTokenManager();
+    const mockActivityLogRepository = new ActivityLogRepository();
 
     // mock needed functions
     mockAuthenticationTokenManager.decodePayload = jest.fn()
@@ -36,13 +38,16 @@ describe('EditTaskByIdUseCase', () => {
         title: payload.title,
         status: payload.status,
         assigne_id: payload.assigneeId,
-      }))
+      }));
+    mockActivityLogRepository.addLog = jest.fn()
+      .mockImplementation(() => Promise.resolve());
 
     const editTaskByIdUseCase = new EditTaskByIdUseCase({
       taskRepository: mockTaskRepository,
       projectRepository: mockProjectRepository,
       memberRepository: mockMemberRepository,
       authenticationTokenManager: mockAuthenticationTokenManager,
+      activityLogRepository: mockActivityLogRepository,
     });
 
     // Action
@@ -66,6 +71,12 @@ describe('EditTaskByIdUseCase', () => {
       priority: payload.priority,
       due_date: payload.due_date,
       assigneeId: payload.assigneeId,
+    });
+    expect(mockActivityLogRepository.addLog).toHaveBeenCalledWith({
+      action: 'edit task',
+      new_value: task.title,
+      taskId: payload.taskId,
+      userId: 'user-123',
     });
   });
 });

@@ -18,6 +18,7 @@ const ProjectRepositoryPostgres = require('./repository/ProjectRepositoryPostgre
 const MemberRepositoryPostgres = require('./repository/MemberRepositoryPostgres');
 const TaskRepositoryPostgres = require('./repository/TaskRepositoryPostgres');
 const CommentRepositoryPostgres = require('./repository/CommentRepositoryPostgres');
+const ActivityLogRepositoryPostgres = require('./repository/ActivityLogRepositoryPostgres');
 
 
 // use case
@@ -42,6 +43,7 @@ const AddCommentUseCase = require('../Applications/use_case/comments/AddCommentU
 const GetCommentsUseCase = require('../Applications/use_case/comments/GetCommentsUseCase');
 const EditCommentByIdUseCase = require('../Applications/use_case/comments/EditCommentByIdUseCase');
 const DeleteCommentByIdUseCase = require('../Applications/use_case/comments/DeleteCommentByIdUseCase');
+const GetActivityLogsUseCase = require('../Applications/use_case/activityLogs/GetActivityLogsUseCase');
 
 
 // Controller
@@ -51,6 +53,7 @@ const ProjectController = require('../Interfaces/http/api/projects/controller');
 const MemberController = require('../Interfaces/http/api/members/controller');
 const TaskController = require('../Interfaces/http/api/tasks/controller');
 const CommentController = require('../Interfaces/http/api/comments/controller');
+const ActivityLogController = require('../Interfaces/http/api/activityLogs/controller');
 
 
 // Routes
@@ -60,13 +63,13 @@ const projectRoutes = require('../Interfaces/http/api/projects/routes');
 const memberRoutes = require('../Interfaces/http/api/members/routes');
 const taskRoutes = require('../Interfaces/http/api/tasks/routes');
 const commentRoutes = require('../Interfaces/http/api/comments/routes');
+const activityLogRoutes = require('../Interfaces/http/api/activityLogs/routes');
 
 
 // Middlewares
 const errorHandler = require('./http/shared/errorHandler');
 const getBearerToken = require('./http/shared/authMiddleware');
 const editableProjectFields = require('../Interfaces/http/api/projects/middlewares');
-
 
 
 const container = createContainer();
@@ -90,6 +93,7 @@ container.register({
   memberRepository: asClass(MemberRepositoryPostgres),
   taskRepository: asClass(TaskRepositoryPostgres),
   commentRepository: asClass(CommentRepositoryPostgres),
+  activityLogRepository: asClass(ActivityLogRepositoryPostgres),
 });
 
 
@@ -124,6 +128,7 @@ container.register({
   getCommentsUseCase: asClass(GetCommentsUseCase),
   editCommentByIdUseCase: asClass(EditCommentByIdUseCase),
   deleteCommentByIdUseCase: asClass(DeleteCommentByIdUseCase),
+  getActivityLogsUseCase: asClass(GetActivityLogsUseCase),
 });
 
 
@@ -135,6 +140,7 @@ container.register({
   memberController: asClass(MemberController),
   taskController: asClass(TaskController),
   commentController: asClass(CommentController),
+  activityLogController: asClass(ActivityLogController),
 });
 
 
@@ -146,6 +152,7 @@ container.register({
   memberRoutes: asFunction(memberRoutes),
   taskRoutes: asFunction(taskRoutes),
   commentRoutes: asFunction(commentRoutes),
+  activityLogRoutes: asFunction(activityLogRoutes),
 });
 
 

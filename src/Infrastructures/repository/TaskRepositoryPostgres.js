@@ -113,7 +113,7 @@ class TaskRepositoryPostgres extends TaskRepository{
 
   async deleteTaskById(taskId) {
     const query = {
-      text: 'DELETE FROM tasks WHERE id = $1 RETURNING id',
+      text: 'DELETE FROM tasks WHERE id = $1 RETURNING title',
       values: [taskId],
     }
 
@@ -121,6 +121,8 @@ class TaskRepositoryPostgres extends TaskRepository{
     if(!result.rows.length) {
       throw new NotFoundError('Task Not Found');
     }
+
+    return result.rows[0];
   }
 }
 

@@ -3,6 +3,7 @@ const TaskRepository = require('../../../../Domains/tasks/TaskRepository');
 const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger');
 const ProjectRepository = require('../../../../Domains/projects/ProjectRepository');
 const DeleteTaskByIdUseCase = require('../DeleteTaskByIdUseCase');
+const ActivityLogRepository = require('../../../../Domains/activityLogs/ActivityLogRepository');
 
 describe('EditTaskByIdUseCase', () => {
   it('should orchestrating edit task by id use case correctly', async () => {
@@ -18,6 +19,7 @@ describe('EditTaskByIdUseCase', () => {
     const mockProjectRepository = new ProjectRepository();
     const mockMemberRepository = new MemberRepository();
     const mockAuthenticationTokenManager = new AuthenticationTokenManager();
+    const mockActivityLogRepository = new ActivityLogRepository();
 
     // mock needed functions
     mockAuthenticationTokenManager.decodePayload = jest.fn()
@@ -27,13 +29,16 @@ describe('EditTaskByIdUseCase', () => {
     mockMemberRepository.searchProject = jest.fn()
       .mockImplementation(() => Promise.resolve());
     mockTaskRepository.deleteTaskById = jest.fn()
-      .mockImplementation(() => Promise.resolve())
+      .mockImplementation(() => Promise.resolve({ title: 'task-title' }));
+    mockActivityLogRepository.addLog = jest.fn()
+      .mockImplementation(() => Promise.resolve());
 
     const deleteTaskByIdUseCase = new DeleteTaskByIdUseCase({
       taskRepository: mockTaskRepository,
       projectRepository: mockProjectRepository,
       memberRepository: mockMemberRepository,
       authenticationTokenManager: mockAuthenticationTokenManager,
+      activityLogRepository: mockActivityLogRepository,
     });
 
     // Action
@@ -44,5 +49,11 @@ describe('EditTaskByIdUseCase', () => {
     expect(mockProjectRepository.verifyProjectOwner).toHaveBeenCalledWith(payload.projectId, 'user-123');
     expect(mockMemberRepository.searchProject).toHaveBeenCalledWith(payload.projectId);
     expect(mockTaskRepository.deleteTaskById).toHaveBeenCalledWith(payload.taskId);
+    expect(mockActivityLogRepository.addLog).toHaveBeenCalledWith({
+      action: 'delete task',
+      new_value: null,
+      taskId: payload.taskId,
+      userId: 'user-123',
+    });
   });
 });

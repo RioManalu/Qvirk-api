@@ -1,11 +1,17 @@
 const Task = require('../../../Domains/tasks/entities/Task');
 
 class AddTaskUseCase {
-  constructor({ taskRepository, projectRepository, memberRepository, authenticationTokenManager}) {
+  constructor({ 
+    taskRepository, 
+    projectRepository, 
+    memberRepository, 
+    authenticationTokenManager, 
+    activityLogRepository }) {
     this._taskRepository = taskRepository;
     this._projectRepository = projectRepository;
     this._memberRepository = memberRepository;
     this._authenticationTokenManager = authenticationTokenManager;
+    this._activityLogRepository = activityLogRepository;
   }
 
   async execute(payload) {
@@ -17,7 +23,7 @@ class AddTaskUseCase {
       await this._memberRepository.getMemberById(payload.projectId, task.assigneeId);
     }
     
-    return this._taskRepository.addTask({
+    const addedTask = await this._taskRepository.addTask({
       title: task.title,
       description: task.description,
       status: task.status,
@@ -27,6 +33,15 @@ class AddTaskUseCase {
       assigneeId: task.assigneeId,
       created_by: userId,
     });
+
+    await this._activityLogRepository.addLog({
+      action: 'add task',
+      new_value: task.title,
+      taskId: addedTask.id,
+      userId: userId,
+    });
+
+    return addedTask;
   }
 }
 

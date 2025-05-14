@@ -12,6 +12,7 @@ module.exports = (app, container) => {
   const memberRoutes = container.resolve('memberRoutes');
   const taskRoutes = container.resolve('taskRoutes');
   const commentRoutes = container.resolve('commentRoutes');
+  const activityLogRoutes = container.resolve('activityLogRoutes');
   const errorHandler = container.resolve('errorHandler');
   
 
@@ -21,6 +22,7 @@ module.exports = (app, container) => {
   app.use('/api/projects/:projectId/members', memberRoutes);
   app.use('/api/projects/:projectId/tasks', taskRoutes);
   app.use('/api/projects/:projectId/tasks/:taskId/comments', commentRoutes);
+  app.use('/api/projects/:projectId/tasks/:taskId/activities', activityLogRoutes);
   app.use('/api/projects', projectRoutes);
 
   // error handling

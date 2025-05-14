@@ -4,6 +4,7 @@ const ProjectRepository = require('../../../../Domains/projects/ProjectRepositor
 const MemberRepository = require('../../../../Domains/members/MemberRepository');
 const AuthenticationTokenManager = require('../../../security/AuthenticationTokenManger');
 const AddedTask = require('../../../../Domains/tasks/entities/AddedTask');
+const ActivityLogRepository = require('../../../../Domains/activityLogs/ActivityLogRepository');
 
 describe('AddTaskUseCase', () => {
   it('should orchestrating add task use case correctly', async () => {
@@ -37,6 +38,7 @@ describe('AddTaskUseCase', () => {
     const mockProjectRepository = new ProjectRepository();
     const mockMemberRepository = new MemberRepository();
     const mockAuthenticationTokenManager = new AuthenticationTokenManager();
+    const mockActivityLogRepository = new ActivityLogRepository();
 
     // mock needed functions
     mockAuthenticationTokenManager.decodePayload = jest.fn()
@@ -47,12 +49,15 @@ describe('AddTaskUseCase', () => {
       .mockImplementation(() => Promise.resolve());
     mockTaskRepository.addTask = jest.fn()
       .mockImplementation(() => Promise.resolve(mockAddedTask));
+    mockActivityLogRepository.addLog = jest.fn()
+      .mockImplementation(() => Promise.resolve());
 
     const addTaskUseCase = new AddTaskUseCase({
       taskRepository: mockTaskRepository,
       projectRepository: mockProjectRepository,
       memberRepository: mockMemberRepository,
       authenticationTokenManager: mockAuthenticationTokenManager,
+      activityLogRepository: mockActivityLogRepository,
     });
 
     // Action
@@ -82,6 +87,12 @@ describe('AddTaskUseCase', () => {
       projectId: payload.projectId,
       assigneeId: payload.assigneeId,
       created_by: 'user-123',
+    });
+    expect(mockActivityLogRepository.addLog).toHaveBeenCalledWith({
+      action: 'add task',
+      new_value: payload.title,
+      taskId: mockAddedTask.id,
+      userId: 'user-123',
     });
   });
 });
