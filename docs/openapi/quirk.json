@@ -296,6 +296,94 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": ["Authentications"],
+        "summary": "update existing access token",
+        "description": "update existing access token using refreshToken in database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success update access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example update accessToken success",
+                    "value": {
+                      "status": "success",
+                      "code": 200,
+                      "message": "new accessToken created",
+                      "data": {
+                        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTQsImV4cCI6MTc1MzEwOTYxN30.F86j61XSqYRscOjlPWUcO25MK2mnKuzZuxDX0AIy6x4"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "invalidRefreshToken": {
+                    "description": "example fail invalid refresh token",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "invalid refresh token",
+                        "stack": "InvariantError: invalid refresh token\n    at JwtTokenManager.verifyRefreshToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\security\\JwtTokenManager.js:26:13)\n    at RefreshAuthenticationUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\authentications\\RefreshAuthenticationUseCase.js:13:44)\n    at AuthenticationController.putAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:30:68)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:280:10)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
