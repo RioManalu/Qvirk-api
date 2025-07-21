@@ -13,6 +13,18 @@
       "url": "https://opensource.org/license/mit"
     }
   },
-  "servers": [{ "url": "https://api.server.test/v1" }],
+  "servers": [
+    {
+      "description": "Quirk Restful API Server",
+      "url": "http://{environment}:7000",
+      "variables": {
+        "environment": {
+          "description": "Server Environment",
+          "default": "localhost",
+          "enum": ["localhost", "dev", "qa", "prod"]
+        }
+      }
+    }
+  ],
   "paths": {}
 }
