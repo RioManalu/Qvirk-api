@@ -384,6 +384,57 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Authentications"],
+        "summary": "logout user",
+        "description": "delete existing refresh token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "success logout user",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "notFound": {
+                    "description": "example fail token not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "token not found in database",
+                        "stack": "InvariantError: token not found in database\n    at AuthenticationRepositoryPostgres.checkAvailabilityToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\AuthenticationRepositoryPostgres.js:27:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async LogoutUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LogoutUserUseCase.js:9:5)\n    at async AuthenticationController.deleteAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:46:7)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
