@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.1",
   "info": {
-    "title": "Quirk Restful API",
+    "title": "Qvirk Restful API",
     "version": "1.0",
-    "description": "OpenAPI for Quirk Restful API",
+    "description": "OpenAPI for Qvirk Restful API",
     "contact": {
       "name": "Rio Hanson Manalu",
       "email": "riohansonmanalu16@gmail.com"
@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "description": "Quirk Restful API Server",
+      "description": "Qvirk Restful API Server",
       "url": "http://{environment}:7000",
       "variables": {
         "environment": {
@@ -26,5 +26,159 @@
       }
     }
   ],
-  "paths": {}
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create new user",
+        "description": "create new user to database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "password", "fullname"],
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "maxLength": 50
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "fullname": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "rio": {
+                  "description": "create user rio",
+                  "value": {
+                    "username": "rio",
+                    "password": "passwordrio",
+                    "fullname": "riohanson"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "success create new user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "addedUser": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "username": {
+                              "type": "string"
+                            },
+                            "fullname": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success create new user",
+                    "value": {
+                      "status": "success",
+                      "code": 201,
+                      "message": "new user created",
+                      "data": {
+                        "addedUser": {
+                          "id": "user-yCPoSvPagLcF44smuVIX4",
+                          "username": "riohanson",
+                          "fullname": "riofullname"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "stack": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "usernameNotAvailable": {
+                    "description": "example fail username is not available",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "username is not available",
+                        "stack": "InvariantError: username is not available\n    at UserRepositoryPostgres.verifyAvailableUsername (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\UserRepositoryPostgres.js:37:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async AddUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\AddUserUseCase.js:11:5)\n    at async UserController.postUser (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\users\\controller.js:9:25)"
+                      }
+                    }
+                  },
+                  "badPayload": {
+                    "description": "example fail bad payload",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada",
+                        "stack": "InvariantError: tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Commons\\Exeptions\\DomainErrorTranslator.js:10:48)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\errorHandler.js:2:31)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
