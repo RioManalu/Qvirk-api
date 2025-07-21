@@ -16,7 +16,7 @@
   "servers": [
     {
       "description": "Qvirk Restful API Server",
-      "url": "http://{environment}:7000",
+      "url": "http://{environment}:7000/api",
       "variables": {
         "environment": {
           "description": "Server Environment",
@@ -151,6 +151,143 @@
                         "code": 400,
                         "message": "tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada",
                         "stack": "InvariantError: tidak dapat membuat user baru karena properti yang dibutuhkan tidak ada\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Commons\\Exeptions\\DomainErrorTranslator.js:10:48)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\errorHandler.js:2:31)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authentications": {
+      "post": {
+        "tags": ["Authentications"],
+        "summary": "login user",
+        "description": "create new access and refresh token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["username", "password"],
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "rio": {
+                  "description": "login user rio",
+                  "value": {
+                    "username": "riohanson",
+                    "password": "secret123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success login user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "authentication": {
+                          "type": "object",
+                          "properties": {
+                            "accesToken": {
+                              "type": "string"
+                            },
+                            "refreshToken": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example login success",
+                    "value": {
+                      "status": "success",
+                      "code": 200,
+                      "message": "login successful",
+                      "data": {
+                        "authentication": {
+                          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTQsImV4cCI6MTc1MzEwOTYxN30.F86j61XSqYRscOjlPWUcO25MK2mnKuzZuxDX0AIy6x4",
+                          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTR9.ziYtye_NdV9iwGQEoCl6Er9NunvsMMeVoNkOcUBRPLs"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "notFound": {
+                    "description": "example fail username not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "Username not found",
+                        "stack": "InvariantError: Username not found\n    at UserRepositoryPostgres.getPasswordByUsername (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\UserRepositoryPostgres.js:49:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async LoginUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LoginUserUseCase.js:19:31)\n    at async AuthenticationController.postAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:14:30)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "wrong password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "wrongPassword": {
+                    "description": "example fail wrong password",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "wrong password",
+                        "stack": "AuthenticationError: wrong password\n    at BcryptPasswordHash.comparePassword (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\security\\BcryptPasswordHash.js:19:13)\n    at async LoginUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LoginUserUseCase.js:20:5)\n    at async AuthenticationController.postAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:14:30)"
                       }
                     }
                   }
