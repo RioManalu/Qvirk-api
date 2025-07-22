@@ -567,6 +567,99 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get all projects owned by the authenticated user",
+        "description": "get all project from database",
+        "responses": {
+          "200": {
+            "description": "success get all projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "projects": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "owner": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success get all projects",
+                    "value": {
+                      "status": "success",
+                      "code": 200,
+                      "message": "Projects retrieved successfully",
+                      "data": {
+                        "projects": [
+                          {
+                            "name": "project-A",
+                            "description": "description project-A",
+                            "owner": "riohanson"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "Access denied. No token provided.",
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
