@@ -139,7 +139,7 @@
                         "status": "fail",
                         "code": 400,
                         "message": "username is not available",
-                        "stack": "InvariantError: username is not available\n    at UserRepositoryPostgres.verifyAvailableUsername (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\UserRepositoryPostgres.js:37:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async AddUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\AddUserUseCase.js:11:5)\n    at async UserController.postUser (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\users\\controller.js:9:25)"
+                        "stack": "InvariantError: username is not available\n    at......."
                       }
                     }
                   },
@@ -239,8 +239,8 @@
                       "message": "login successful",
                       "data": {
                         "authentication": {
-                          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTQsImV4cCI6MTc1MzEwOTYxN30.F86j61XSqYRscOjlPWUcO25MK2mnKuzZuxDX0AIy6x4",
-                          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTR9.ziYtye_NdV9iwGQEoCl6Er9NunvsMMeVoNkOcUBRPLs"
+                          "accessToken": "ey....",
+                          "refreshToken": "ey...."
                         }
                       }
                     }
@@ -264,7 +264,7 @@
                         "status": "fail",
                         "code": 400,
                         "message": "Username not found",
-                        "stack": "InvariantError: Username not found\n    at UserRepositoryPostgres.getPasswordByUsername (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\UserRepositoryPostgres.js:49:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async LoginUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LoginUserUseCase.js:19:31)\n    at async AuthenticationController.postAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:14:30)"
+                        "stack": "InvariantError: Username not found\n    at ....."
                       }
                     }
                   }
@@ -287,7 +287,7 @@
                         "status": "fail",
                         "code": 401,
                         "message": "wrong password",
-                        "stack": "AuthenticationError: wrong password\n    at BcryptPasswordHash.comparePassword (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\security\\BcryptPasswordHash.js:19:13)\n    at async LoginUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LoginUserUseCase.js:20:5)\n    at async AuthenticationController.postAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:14:30)"
+                        "stack": "AuthenticationError: wrong password\n    at...."
                       }
                     }
                   }
@@ -352,7 +352,7 @@
                       "code": 200,
                       "message": "new accessToken created",
                       "data": {
-                        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItOE9vcW9aMWNfbGpKZzlfMUZ2b3EtIiwidXNlcm5hbWUiOiJyaW9oYW5zb24iLCJpYXQiOjE3NTMxMDk2MTQsImV4cCI6MTc1MzEwOTYxN30.F86j61XSqYRscOjlPWUcO25MK2mnKuzZuxDX0AIy6x4"
+                        "accessToken": "ey..."
                       }
                     }
                   }
@@ -375,7 +375,7 @@
                         "status": "fail",
                         "code": 400,
                         "message": "invalid refresh token",
-                        "stack": "InvariantError: invalid refresh token\n    at JwtTokenManager.verifyRefreshToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\security\\JwtTokenManager.js:26:13)\n    at RefreshAuthenticationUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\authentications\\RefreshAuthenticationUseCase.js:13:44)\n    at AuthenticationController.putAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:30:68)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:280:10)"
+                        "stack": "InvariantError: invalid refresh token\n    at...."
                       }
                     }
                   }
@@ -426,7 +426,7 @@
                         "status": "fail",
                         "code": 400,
                         "message": "token not found in database",
-                        "stack": "InvariantError: token not found in database\n    at AuthenticationRepositoryPostgres.checkAvailabilityToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\repository\\AuthenticationRepositoryPostgres.js:27:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async LogoutUserUseCase.execute (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Applications\\use_case\\users\\LogoutUserUseCase.js:9:5)\n    at async AuthenticationController.deleteAuthentication (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Interfaces\\http\\api\\authentications\\controller.js:46:7)"
+                        "stack": "InvariantError: token not found in database\n    at....."
                       }
                     }
                   }
@@ -535,7 +535,7 @@
                         "status": "fail",
                         "code": 400,
                         "message": "tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada",
-                        "stack": "InvariantError: tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Commons\\Exeptions\\DomainErrorTranslator.js:18:42)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\errorHandler.js:2:31)"
+                        "stack": "InvariantError: tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada\n    at...."
                       }
                     }
                   }
@@ -558,7 +558,7 @@
                         "status": "fail",
                         "code": 401,
                         "message": "Access denied. No token provided.",
-                        "stack": "AuthenticationError: Access denied. No token provided.\n    at getBearerToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\authMiddleware.js:9:19)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:47:12)"
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at...."
                       }
                     }
                   }
