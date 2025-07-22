@@ -436,6 +436,138 @@
           }
         }
       }
+    },
+    "/projects": {
+      "post": {
+        "tags": ["Projects"],
+        "summary": "create new project",
+        "description": "create new project to database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "success create new project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "addedProject": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "created_by": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success create new project",
+                    "value": {
+                      "status": "success",
+                      "code": 201,
+                      "message": "new project created",
+                      "data": {
+                        "addedProject": {
+                          "id": "project-D_ZKU5QJs0mrdKNsgRJk-",
+                          "name": "project-A",
+                          "created_by": "user-c5RCAGtHb7ZsH7gE9rXxT"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "badPayload": {
+                    "description": "example fail bad request",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada",
+                        "stack": "InvariantError: tidak dapat membuat project baru karena properti yang dibutuhkan tidak ada\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Commons\\Exeptions\\DomainErrorTranslator.js:18:42)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\errorHandler.js:2:31)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "Access denied. No token provided.",
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at getBearerToken (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\src\\Infrastructures\\http\\shared\\authMiddleware.js:9:19)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (C:\\web\\Project\\Self-Project\\02\\Qvirk\\Qvirk-api\\node_modules\\express\\lib\\router\\index.js:47:12)"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
