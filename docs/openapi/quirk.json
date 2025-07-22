@@ -665,7 +665,7 @@
     "/projects/{projectId}": {
       "get": {
         "tags": ["Projects"],
-        "summary": "Get project by id owned by the authenticated user",
+        "summary": "get project by id owned by the authenticated user",
         "description": "get project from database",
         "parameters": [
           {
@@ -784,6 +784,187 @@
                         "code": 404,
                         "message": "Project Not Found",
                         "stack": "NotFoundError: Project Not Found\n    at ..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Projects"],
+        "summary": "edit project by id owned by the authenticated user",
+        "description": "edit project from database",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "project id for edit project by id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "description"],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success edit project by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "project": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "owner": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success edit project by id",
+                    "value": {
+                      "status": "success",
+                      "code": 200,
+                      "message": "Project updated successfully",
+                      "data": {
+                        "changes": {
+                          "name": "project name",
+                          "description": "project description",
+                          "updated_at": "2025-07-22T08:02:33.836Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "invalidField": {
+                    "description": "example fail invalid field",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "Invalid Field",
+                        "stack": "InvariantError: Invalid Field\n    at ....."
+                      }
+                    }
+                  },
+                  "badPayload": {
+                    "description": "example fail bad payload",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "tidak dapat mengedit project karena tipe data tidak sesuai",
+                        "stack": "InvariantError: tidak dapat mengedit project karena tipe data tidak sesuai\n    at ..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 403,
+                        "message": "Cannot Edit Field",
+                        "stack": "AuthorizationError: Cannot Edit Field\n    at ....."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "notFound": {
+                    "description": "example fail not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Project Not Found",
+                        "stack": "NotFoundError: Project Not Found\n    at ...."
                       }
                     }
                   }
