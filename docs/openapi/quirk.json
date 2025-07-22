@@ -566,7 +566,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "get": {
         "tags": ["Projects"],
@@ -659,7 +664,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}": {
@@ -791,7 +801,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "put": {
         "tags": ["Projects"],
@@ -972,7 +987,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Projects"],
@@ -1042,7 +1062,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/members": {
@@ -1185,7 +1210,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "get": {
         "tags": ["Members"],
@@ -1312,7 +1342,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/members/{userId}": {
@@ -1427,7 +1462,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/tasks": {
@@ -1677,7 +1717,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "get": {
         "tags": ["Tasks"],
@@ -1869,7 +1914,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/tasks/{taskId}": {
@@ -2078,7 +2128,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "put": {
         "tags": ["Tasks"],
@@ -2265,7 +2320,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Tasks"],
@@ -2388,7 +2448,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/tasks/{taskId}/comments": {
@@ -2616,7 +2681,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "get": {
         "tags": ["Tasks"],
@@ -2804,7 +2874,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{projectId}/tasks/{taskId}/comments/{commentId}": {
@@ -3041,7 +3116,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Comments"],
@@ -3184,7 +3264,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     },
     "/projects/{{projectId}}/tasks/{{taskId}}/activities": {
@@ -3377,7 +3462,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "qvirkAuth": []
+          }
+        ]
       }
     }
   },
@@ -3404,6 +3494,14 @@
             }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "qvirkAuth": {
+        "description": "Authentication for qvirk RESTful API",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
