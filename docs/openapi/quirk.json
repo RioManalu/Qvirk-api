@@ -1427,6 +1427,256 @@
           }
         }
       }
+    },
+    "/projects/{projectId}/tasks": {
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "assign task to member in project",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "project id for get project by id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title"],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": ["todo", "in_progress", "done"],
+                    "example": "todo"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": ["low", "medium", "high", "urgent"],
+                    "example": "low"
+                  },
+                  "due_date": {
+                    "type": "string",
+                    "example": null
+                  },
+                  "assignee_id": {
+                    "type": "string",
+                    "example": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "success create new user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "addedTask": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "priority": {
+                              "type": "string"
+                            },
+                            "due_date": {
+                              "type": "string"
+                            },
+                            "project_id": {
+                              "type": "string"
+                            },
+                            "created_by": {
+                              "type": "string"
+                            },
+                            "assignee_id": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success create new task",
+                    "value": {
+                      "status": "success",
+                      "code": 201,
+                      "message": "New Task Created",
+                      "data": {
+                        "addedTask": {
+                          "id": "task-pNj5hVWRCuhg_e6DFA4FP",
+                          "title": "task-title",
+                          "description": "task-description",
+                          "status": "in_progress",
+                          "priority": "high",
+                          "due_date": null,
+                          "project_id": "project-q7hCkTb7YC0rDUmznkB58",
+                          "created_by": "user-6I1Ll1-tghuDGHkoi35Uw",
+                          "assignee_id": "user-patzt7T8I6zIk_NlJxpU4",
+                          "created_at": "2025-07-22T10:35:29.334Z",
+                          "updated_at": "2025-07-22T10:35:29.334Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "badPayload": {
+                    "description": "example fail bad payload",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "tidak dapat membuat task baru karena tipe data tidak sesuai",
+                        "stack": "InvariantError: tidak dapat membuat task baru karena tipe data tidak sesuai\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed (invalid/missing token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "noToken": {
+                    "description": "example fail missing token",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "Access denied. No token provided.",
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 403,
+                        "message": "Access Denied",
+                        "stack": "AuthorizationError: Access Denied\n    at......"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "projectNotFound": {
+                    "description": "example fail project not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Project Not Found",
+                        "stack": "NotFoundError: Project Not Found\n    at ..."
+                      }
+                    }
+                  },
+                  "memberNotFound": {
+                    "description": "example fail member not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Member Not Found",
+                        "stack": "NotFoundError: Member Not Found\n    at ..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
