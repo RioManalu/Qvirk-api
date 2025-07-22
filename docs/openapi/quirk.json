@@ -661,6 +661,138 @@
           }
         }
       }
+    },
+    "/projects/{projectId}": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get project by id owned by the authenticated user",
+        "description": "get project from database",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "project id for get project by id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success get project by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "project": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "owner": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success get project by id",
+                    "value": {
+                      "status": "success",
+                      "code": 200,
+                      "message": "Project retrieved successfully",
+                      "data": {
+                        "project": {
+                          "name": "project-A",
+                          "description": "description project-A",
+                          "owner": "riohanson",
+                          "created_at": "2025-07-22T06:41:33.478Z",
+                          "updated_at": "2025-07-22T06:41:33.478Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 403,
+                        "message": "Access Denied",
+                        "stack": "AuthorizationError: Access Denied\n    at......"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "notFound": {
+                    "description": "example fail project not fouund",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Project Not Found",
+                        "stack": "NotFoundError: Project Not Found\n    at ..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
