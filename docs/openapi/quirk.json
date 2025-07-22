@@ -1313,6 +1313,119 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Members"],
+        "summary": "delete member by id",
+        "description": "delete member from database",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "project id for get project by id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "user id for delete member from project",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success logout user",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "401": {
+            "description": "Authentication failed (invalid/missing token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "noToken": {
+                    "description": "example fail no token",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "Access denied. No token provided.",
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 403,
+                        "message": "Cannot Edit Field",
+                        "stack": "AuthorizationError: Cannot Edit Field\n    at ....."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "projectNotFound": {
+                    "description": "example fail project not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Project Not Found",
+                        "stack": "NotFoundError: Project Not Found\n    at ..."
+                      }
+                    }
+                  },
+                  "memberNotFound": {
+                    "description": "example fail member not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Member Not Found",
+                        "stack": "NotFoundError: Member Not Found\n    at ..."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
