@@ -2390,6 +2390,234 @@
           }
         }
       }
+    },
+    "/projects/{{projectId}}/tasks/{{taskId}}/comments": {
+      "post": {
+        "tags": ["Comments"],
+        "summary": "add comment to task",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "project id for get project by id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "description": "task id for get task by id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "success create new user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "addedComment": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "content": {
+                              "type": "string"
+                            },
+                            "task_id": {
+                              "type": "string"
+                            },
+                            "user_id": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "description": "example success create new comment",
+                    "value": {
+                      "status": "success",
+                      "code": 201,
+                      "message": "New Comment Created",
+                      "data": {
+                        "addedComment": {
+                          "id": "comment-_6-T3i-LFopNaopErc2PJ",
+                          "content": "comment-content",
+                          "task_id": "task-LembGvNZ1Gnco8F8f3k8J",
+                          "user_id": "user-7wx8Y149VDm6C9csAu6Lr",
+                          "created_at": "2025-07-22T13:46:05.106Z",
+                          "updated_at": "2025-07-22T13:46:05.106Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "badPayload": {
+                    "description": "example fail bad request",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 400,
+                        "message": "tidak dapat membuat comment baru karena properti yang dibutuhkan tidak ada",
+                        "stack": "InvariantError: tidak dapat membuat comment baru karena properti yang dibutuhkan tidak ada\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed (invalid/missing token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "noToken": {
+                    "description": "example fail missing token",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 401,
+                        "message": "Access denied. No token provided.",
+                        "stack": "AuthenticationError: Access denied. No token provided.\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "accessDenied": {
+                    "description": "example fail access denied",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 403,
+                        "message": "Access Denied",
+                        "stack": "AuthorizationError: Access Denied\n    at......"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error400"
+                },
+                "examples": {
+                  "projectNotFound": {
+                    "description": "example fail project not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Project Not Found",
+                        "stack": "NotFoundError: Project Not Found\n    at ..."
+                      }
+                    }
+                  },
+                  "memberNotFound": {
+                    "description": "example fail member not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Member Not Found",
+                        "stack": "NotFoundError: Member Not Found\n    at ..."
+                      }
+                    }
+                  },
+                  "taskNotFound": {
+                    "description": "example fail member not found",
+                    "value": {
+                      "error": {
+                        "status": "fail",
+                        "code": 404,
+                        "message": "Task Not Found",
+                        "stack": "NotFoundError: Task Not Found\n    at ...."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
