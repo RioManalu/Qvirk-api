@@ -1313,7 +1313,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/projects/{projectId}/members/{userId}": {
       "delete": {
         "tags": ["Members"],
         "summary": "delete member by id",
