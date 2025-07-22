@@ -273,7 +273,7 @@
             }
           },
           "401": {
-            "description": "wrong password",
+            "description": "Invalid credentials (e.g., wrong username or password)",
             "content": {
               "application/json": {
                 "schema": {
@@ -544,15 +544,15 @@
             }
           },
           "401": {
-            "description": "access denied",
+            "description": "Authentication failed (invalid/missing token)",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/error400"
                 },
                 "examples": {
-                  "accessDenied": {
-                    "description": "example fail access denied",
+                  "noToken": {
+                    "description": "example fail missing token",
                     "value": {
                       "error": {
                         "status": "fail",
@@ -637,15 +637,15 @@
             }
           },
           "401": {
-            "description": "access denied",
+            "description": "Authentication failed (invalid/missing token)",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/error400"
                 },
                 "examples": {
-                  "accessDenied": {
-                    "description": "example fail access denied",
+                  "noToken": {
+                    "description": "example fail missing token",
                     "value": {
                       "error": {
                         "status": "fail",
