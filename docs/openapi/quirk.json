@@ -129,7 +129,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "usernameNotAvailable": {
@@ -254,7 +254,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -277,7 +277,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "wrongPassword": {
@@ -365,7 +365,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "invalidRefreshToken": {
@@ -416,7 +416,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -525,7 +525,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "badPayload": {
@@ -548,7 +548,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -646,7 +646,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -760,7 +760,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -783,7 +783,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -912,7 +912,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "invalidField": {
@@ -946,7 +946,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -969,7 +969,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -1021,7 +1021,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -1044,7 +1044,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -1169,7 +1169,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "badPayload": {
@@ -1192,7 +1192,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -1301,7 +1301,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -1324,7 +1324,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "notFound": {
@@ -1387,7 +1387,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -1410,7 +1410,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -1433,7 +1433,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -1619,7 +1619,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "badPayload": {
@@ -1642,7 +1642,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -1665,7 +1665,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -1688,7 +1688,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -1839,7 +1839,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -1862,7 +1862,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -1885,7 +1885,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -2042,7 +2042,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -2065,7 +2065,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -2088,7 +2088,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -2234,7 +2234,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -2257,7 +2257,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -2280,7 +2280,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -2362,7 +2362,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -2385,7 +2385,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -2408,7 +2408,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -2572,7 +2572,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "badPayload": {
@@ -2595,7 +2595,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -2618,7 +2618,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -2641,7 +2641,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -2788,7 +2788,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -2811,7 +2811,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -2834,7 +2834,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -3007,7 +3007,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "badPayload": {
@@ -3030,7 +3030,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -3053,7 +3053,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -3076,7 +3076,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -3167,7 +3167,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -3190,7 +3190,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -3213,7 +3213,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -3376,7 +3376,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "noToken": {
@@ -3399,7 +3399,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "accessDenied": {
@@ -3422,7 +3422,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/error400"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "projectNotFound": {
@@ -3473,7 +3473,7 @@
   },
   "components": {
     "schemas": {
-      "error400": {
+      "error": {
         "type": "object",
         "properties": {
           "error": {
